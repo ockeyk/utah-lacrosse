@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utah Boys Lacrosse</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00824B;
+    --green-dark: #005a34;
+    --green-light: #00a85f;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --bg: #0a0f0d;
+    --bg2: #111a14;
+    --bg3: #182219;
+    --surface: #1e2d22;
+    --surface2: #253329;
+    --border: rgba(0,130,75,0.2);
+    --text: #e8f0ea;
+    --text2: #8fa894;
+    --text3: #5a7060;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .logo span { color: var(--green-light); }
+
+  nav { display: flex; gap: 4px; }
+
+  nav button {
+    background: none;
+    border: none;
+    color: var(--text2);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  nav button:hover { color: var(--text); background: var(--surface); }
+  nav button.active { color: var(--green-light); background: rgba(0,130,75,0.15); }
+
+  /* MAIN */
+  main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+  /* VIEWS */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* LOADING */
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    margin-left: 12px;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .section-sub {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-lbl {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead th {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(0,130,75,0.08);
+    transition: background 0.1s;
+  }
+
+  tbody tr:hover { background: var(--surface2); }
+
+  tbody tr.olympus-row { background: rgba(0,130,75,0.1); }
+  tbody tr.olympus-row:hover { background: rgba(0,130,75,0.18); }
+
+  tbody td {
+    padding: 10px 12px;
+    color: var(--text);
+  }
+
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.rank { color: var(--text3); font-size: 13px; width: 40px; }
+  td.team-name { font-weight: 600; }
+  td.rpi-val { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--green-light); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .badge-6a { background: rgba(201,168,76,0.2); color: var(--gold-light); }
+  .badge-5a { background: rgba(0,130,75,0.2); color: var(--green-light); }
+  .badge-4a { background: rgba(100,150,200,0.2); color: #7bb8e8; }
+  .badge-w { background: rgba(0,130,75,0.2); color: var(--green-light); }
+  .badge-l { background: rgba(200,60,60,0.2); color: #e88080; }
+
+  /* SELECTORS */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  select, input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  select:focus, input:focus { border-color: var(--green); }
+
+  .btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn:hover { background: var(--green-light); }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover { background: var(--surface2); color: var(--text); }
+
+  /* GRID LAYOUTS */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  @media (max-width: 768px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    nav button { font-size: 11px; padding: 6px 10px; }
+  }
+
+  /* OLYMPUS HERO */
+  .olympus-hero {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .olympus-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .olympus-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+  .olympus-info h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .olympus-info h1 span { color: var(--green-light); }
+
+  .olympus-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .olympus-meta span {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--text2);
+    text-transform: uppercase;
+  }
+
+  .olympus-meta strong { color: var(--gold-light); }
+
+  /* SCHEDULE TABLE */
+  .result-w { color: var(--green-light); font-weight: 700; }
+  .result-l { color: #e88080; font-weight: 700; }
+
+  /* MATCHUP */
+  .matchup-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .matchup-vs {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--text3);
+    text-align: center;
+  }
+
+  .matchup-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .matchup-card h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .matchup-record {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 900;
+    margin: 12px 0 4px;
+  }
+
+  .matchup-record.win { color: var(--green-light); }
+  .matchup-record.loss { color: #e88080; }
+  .matchup-record.even { color: var(--gold-light); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+  }
+
+  .tab:hover { color: var(--text2); }
+  .tab.active { color: var(--green-light); border-bottom-color: var(--green-light); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* H2H RESULT */
+  .h2h-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .h2h-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .h2h-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .h2h-lbl {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* SEARCH */
+  input[type="text"] {
+    width: 240px;
+  }
+
+  .highlight { background: rgba(0,130,75,0.2); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Utah <span>Boys Lacrosse</span></div>
+  <nav>
+    <button class="active" onclick="showView('olympus')">Olympus</button>
+    <button onclick="showView('standings')">Standings</button>
+    <button onclick="showView('rpi')">RPI</button>
+    <button onclick="showView('matchup')">Matchup</button>
+    <button onclick="showView('leaders')">Leaders</button>
+    <button onclick="showView('history')">History</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- OLYMPUS VIEW -->
+  <div id="view-olympus" class="view active">
+    <div id="olympus-content"><div class="loading">Loading Olympus</div></div>
+  </div>
+
+  <!-- STANDINGS VIEW -->
+  <div id="view-standings" class="view">
+    <div class="section-header">
+      <div class="section-title">Standings</div>
+    </div>
+    <div class="controls">
+      <select id="standings-season" onchange="renderStandings()"></select>
+      <select id="standings-class" onchange="renderStandings()">
+        <option value="all">All Classifications</option>
+        <option value="6A">6A</option>
+        <option value="5A">5A</option>
+        <option value="4A">4A</option>
+      </select>
+    </div>
+    <div id="standings-content"><div class="loading">Loading</div></div>
+  </div>
+
+  <!-- RPI VIEW -->
+  <div id="view-rpi" class="view">
+    <div class="section-header">
+      <div class="section-title">RPI Rankings</div>
+      <div class="section-sub">UHSAA Formula</div>
+    </div>
+    <div class="controls">
+      <select id="rpi-season" onchange="renderRPI()"></select>
+      <select id="rpi-class" onchange="renderRPI()">
+        <option value="all">All Classifications</option>
+        <option value="6A">6A</option>
+        <option value="5A">5A</option>
+        <option value="4A">4A</option>
+      </select>
+    </div>
+    <div id="rpi-content"><div class="loading">Loading</div></div>
+  </div>
+
+  <!-- MATCHUP VIEW -->
+  <div id="view-matchup" class="view">
+    <div class="section-header">
+      <div class="section-title">Matchup Tool</div>
+    </div>
+    <div class="controls">
+      <select id="matchup-team1" onchange="renderMatchup()"></select>
+      <span style="color:var(--text3);font-family:var(--font-display);font-weight:700">VS</span>
+      <select id="matchup-team2" onchange="renderMatchup()"></select>
+      <select id="matchup-season" onchange="renderMatchup()">
+        <option value="all">All Time</option>
+      </select>
+    </div>
+    <div id="matchup-content"><div class="empty">Select two teams to compare</div></div>
+  </div>
+
+  <!-- LEADERS VIEW -->
+  <div id="view-leaders" class="view">
+    <div class="section-header">
+      <div class="section-title">Stat Leaders</div>
+    </div>
+    <div class="controls">
+      <select id="leaders-season" onchange="renderLeaders()"></select>
+      <select id="leaders-class" onchange="renderLeaders()">
+        <option value="all">All Classifications</option>
+        <option value="6A">6A</option>
+        <option value="5A">5A</option>
+        <option value="4A">4A</option>
+      </select>
+      <select id="leaders-stat" onchange="renderLeaders()">
+        <option value="Goals">Goals</option>
+        <option value="Assists">Assists</option>
+        <option value="Points">Points</option>
+        <option value="G/G">Goals Per Game</option>
+        <option value="A/G">Assists Per Game</option>
+        <option value="GroundBalls">Ground Balls</option>
+        <option value="Saves">Saves</option>
+        <option value="GAA">GAA (lower = better)</option>
+      </select>
+    </div>
+    <div id="leaders-content"><div class="loading">Loading</div></div>
+  </div>
+
+  <!-- HISTORY VIEW -->
+  <div id="view-history" class="view">
+    <div class="section-header">
+      <div class="section-title">Program History</div>
+    </div>
+    <div class="controls">
+      <select id="history-team" onchange="renderHistory()"></select>
+    </div>
+    <div id="history-content"><div class="loading">Loading</div></div>
+  </div>
+
+</main>
+
+<script>
+// ============================================================
+// DATA URLS
+// ============================================================
+const URLS = {
+  games:       'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=1897266386&single=true&output=csv',
+  playerStats: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=694892484&single=true&output=csv',
+  teamSeasons: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=630467221&single=true&output=csv',
+  rpi:         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=47758390&single=true&output=csv',
+};
+
+const TEAM_CLASSIFICATIONS = {
+  'Alta':'5A','American Fork':'6A','Bear River':'4A','Bingham':'6A','Bonneville':'5A',
+  'Bountiful':'5A','Box Elder':'4A','Brighton':'5A','Cedar Valley':'5A','Clearfield':'5A',
+  'Copper Hills':'6A','Corner Canyon':'6A','Crimson Cliffs':'4A','Davis':'6A','Dixie':'4A',
+  'East':'6A','Farmington':'6A','Fremont':'6A','Green Canyon':'4A','Herriman':'6A',
+  'Highland':'6A','Hillcrest':'6A','Jordan':'6A','Juan Diego Catholic':'4A','Judge Memorial':'4A',
+  'Layton':'6A','Lehi':'6A','Logan':'4A','Lone Peak':'6A','Maple Mountain':'4A',
+  'Mountain Crest':'4A','Mountain Ridge':'6A','Northridge':'5A','Olympus':'5A','Orem':'4A',
+  'Park City':'5A','Payson':'4A','Pleasant Grove':'6A','Provo':'4A','Ridgeline':'4A',
+  'Riverton':'6A','Roy':'5A','Salem Hills':'4A','Sky View':'4A','Skyline':'5A',
+  'Skyridge':'6A','Snow Canyon':'4A','Spanish Fork':'4A','Syracuse':'6A','Timpanogos':'4A',
+  'Timpview':'4A','Viewmont':'5A','Wasatch':'4A','Waterford':'4A','Weber':'6A',
+  'West':'5A','West Field':'5A','West Jordan':'6A','Westlake':'6A','Woods Cross':'5A',
+};
+
+// ============================================================
+// DATA CACHE & LOADING
+// ============================================================
+const cache = {};
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.slice(1).map(line => {
+    const vals = [];
+    let cur = '', inQ = false;
+    for (let c of line) {
+      if (c === '"') inQ = !inQ;
+      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else cur += c;
+    }
+    vals.push(cur.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = vals[i] || '');
+    return obj;
+  });
+}
+
+async function loadData(key) {
+  if (cache[key]) return cache[key];
+  const res = await fetch(URLS[key]);
+  const text = await res.text();
+  cache[key] = parseCSV(text);
+  return cache[key];
+}
+
+async function loadAll() {
+  await Promise.all(['games','playerStats','teamSeasons','rpi'].map(loadData));
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  event.target.classList.add('active');
+
+  if (name === 'olympus') renderOlympus();
+  if (name === 'standings') renderStandings();
+  if (name === 'rpi') renderRPI();
+  if (name === 'matchup') initMatchup();
+  if (name === 'leaders') renderLeaders();
+  if (name === 'history') initHistory();
+}
+
+// ============================================================
+// SEASON HELPERS
+// ============================================================
+function getSeasons(data) {
+  return [...new Set(data.map(r => r.Season))].filter(Boolean).sort().reverse();
+}
+
+function populateSelect(id, options, selected) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const cur = el.value || selected;
+  el.innerHTML = options.map(o =>
+    `<option value="${o}" ${o===cur?'selected':''}>${o}</option>`
+  ).join('');
+}
+
+// ============================================================
+// OLYMPUS VIEW
+// ============================================================
+async function renderOlympus() {
+  const el = document.getElementById('olympus-content');
+  try {
+    const [games, teamSeasons, rpi, playerStats] = await Promise.all([
+      loadData('games'), loadData('teamSeasons'), loadData('rpi'), loadData('playerStats')
+    ]);
+
+    const currentSeason = '2025-26';
+    const oGames = games.filter(g =>
+      g.Season === currentSeason && (g.Team1 === 'Olympus' || g.Team2 === 'Olympus')
+    ).sort((a,b) => a.Date.localeCompare(b.Date));
+
+    const oSeason = teamSeasons.find(r => r.Season === currentSeason && r.Team === 'Olympus') || {};
+    const oRPI = rpi.find(r => r.Season === currentSeason && r.Team === 'Olympus') || {};
+    const oPlayers = playerStats.filter(r => r.Team === 'Olympus' && r.Season === currentSeason)
+      .sort((a,b) => parseFloat(b.Goals||0) - parseFloat(a.Goals||0));
+
+    // All-time record
+    const allSeasons = teamSeasons.filter(r => r.Team === 'Olympus');
+    const totalW = allSeasons.reduce((s,r) => s + parseInt(r.Wins||0), 0);
+    const totalL = allSeasons.reduce((s,r) => s + parseInt(r.Losses||0), 0);
+
+    const played = oGames.filter(g => g.Winner);
+    const wins = played.filter(g => g.Winner === 'Olympus').length;
+    const losses = played.filter(g => g.Winner !== 'Olympus' && g.Winner).length;
+
+    el.innerHTML = `
+      <div class="olympus-hero">
+        <div class="olympus-logo">
+          <img src="https://image.maxpreps.io/school-mascot/8/f/e/8fe978ec-f307-4ea5-8691-d09e185561fd.gif?version=635231308800000000&width=1024&height=1024"
+               onerror="this.parentElement.innerHTML='<span style=font-size:32px>🥍</span>'" />
+        </div>
+        <div class="olympus-info">
+          <h1>Olympus <span>Titans</span></h1>
+          <div class="olympus-meta">
+            <span>5A Region 6</span>
+            <span>${currentSeason} Record: <strong>${wins}-${losses}</strong></span>
+            ${oRPI.RPI ? `<span>RPI Rank: <strong>#${oRPI.Rank}</strong> (${parseFloat(oRPI.RPI).toFixed(4)})</span>` : ''}
+            <span>All-Time: <strong>${totalW}-${totalL}</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-val">${wins}-${losses}</div>
+          <div class="stat-lbl">${currentSeason} Record</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${oRPI.Rank ? '#'+oRPI.Rank : '—'}</div>
+          <div class="stat-lbl">5A RPI Rank</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${oSeason.GoalsFor || '—'}</div>
+          <div class="stat-lbl">Goals For</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${oSeason.GoalsAgainst || '—'}</div>
+          <div class="stat-lbl">Goals Against</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${totalW}-${totalL}</div>
+          <div class="stat-lbl">All-Time Record</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="section-header"><div class="section-title" style="font-size:20px">${currentSeason} Schedule</div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr>
+                <th>Date</th><th>Opponent</th><th>Result</th><th>Score</th>
+              </tr></thead>
+              <tbody>
+                ${oGames.map(g => {
+                  const isHome = g.Team1 === 'Olympus';
+                  const opp = isHome ? g.Team2 : g.Team1;
+                  const oScore = isHome ? g.Team2Score : g.Team1Score;
+                  const myScore = isHome ? g.Team1Score : g.Team2Score;
+                  const won = g.Winner === 'Olympus';
+                  const played = g.Winner !== '';
+                  const result = !played ? '—' : won ? 'W' : 'L';
+                  const score = played && myScore !== '' ? `${myScore}-${oScore}` : 'Upcoming';
+                  return `<tr class="${opp==='Olympus'?'olympus-row':''}">
+                    <td style="color:var(--text3);font-size:13px">${g.Date ? g.Date.substring(5) : ''}</td>
+                    <td class="team-name">${opp}${!isHome ? ' <span style="color:var(--text3);font-size:11px">@</span>' : ''}</td>
+                    <td class="${played ? (won?'result-w':'result-l') : ''}">${result}</td>
+                    <td style="font-variant-numeric:tabular-nums">${score}</td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-header"><div class="section-title" style="font-size:20px">Roster Stats</div></div>
+          ${oPlayers.length ? `
+          <div class="table-wrap">
+            <table>
+              <thead><tr>
+                <th>#</th><th>Player</th><th>Yr</th><th class="num">GP</th>
+                <th class="num">G</th><th class="num">A</th><th class="num">Pts</th><th class="num">GB</th>
+              </tr></thead>
+              <tbody>
+                ${oPlayers.map(p => `<tr>
+                  <td style="color:var(--text3)">${p.Jersey||''}</td>
+                  <td class="team-name">${p.Name}</td>
+                  <td style="color:var(--text3)">${p.ClassYear ? p.ClassYear.substring(0,2) : ''}</td>
+                  <td class="num">${p.GP||''}</td>
+                  <td class="num" style="color:var(--green-light)">${p.Goals||''}</td>
+                  <td class="num">${p.Assists||''}</td>
+                  <td class="num">${p.Points||''}</td>
+                  <td class="num">${p.GroundBalls||''}</td>
+                </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>` : '<div class="empty">No player stats available yet</div>'}
+
+          <div style="margin-top:1.5rem">
+            <div class="section-header"><div class="section-title" style="font-size:20px">Season History</div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Season</th><th>W</th><th>L</th><th class="num">GF</th><th class="num">GA</th><th class="num">RPI</th></tr></thead>
+                <tbody>
+                  ${allSeasons.sort((a,b)=>b.Season.localeCompare(a.Season)).map(s => {
+                    const r = rpi.find(r => r.Season===s.Season && r.Team==='Olympus');
+                    return `<tr>
+                      <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
+                      <td style="color:var(--green-light)">${s.Wins}</td>
+                      <td style="color:#e88080">${s.Losses}</td>
+                      <td class="num">${s.GoalsFor}</td>
+                      <td class="num">${s.GoalsAgainst}</td>
+                      <td class="num" style="color:var(--gold-light)">${r ? parseFloat(r.RPI).toFixed(4) : '—'}</td>
+                    </tr>`;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error loading data: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// STANDINGS VIEW
+// ============================================================
+async function renderStandings() {
+  const el = document.getElementById('standings-content');
+  el.innerHTML = '<div class="loading">Loading</div>';
+  try {
+    const teamSeasons = await loadData('teamSeasons');
+    const seasons = getSeasons(teamSeasons);
+    populateSelect('standings-season', seasons, seasons[0]);
+
+    const season = document.getElementById('standings-season').value || seasons[0];
+    const cls = document.getElementById('standings-class').value;
+
+    let data = teamSeasons.filter(r => r.Season === season);
+    if (cls !== 'all') data = data.filter(r => r.Classification === cls);
+    data = data.sort((a,b) => parseFloat(b.WinPct||0) - parseFloat(a.WinPct||0)
+      || parseInt(b.Wins||0) - parseInt(a.Wins||0));
+
+    el.innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Team</th><th>Class</th>
+            <th class="num">W</th><th class="num">L</th><th class="num">Win%</th>
+            <th class="num">GF</th><th class="num">GA</th><th class="num">Diff</th>
+          </tr></thead>
+          <tbody>
+            ${data.map((r,i) => `<tr class="${r.Team==='Olympus'?'olympus-row':''}">
+              <td class="rank">${i+1}</td>
+              <td class="team-name">${r.Team}</td>
+              <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
+              <td class="num" style="color:var(--green-light)">${r.Wins}</td>
+              <td class="num" style="color:#e88080">${r.Losses}</td>
+              <td class="num">${parseFloat(r.WinPct||0).toFixed(3)}</td>
+              <td class="num">${r.GoalsFor}</td>
+              <td class="num">${r.GoalsAgainst}</td>
+              <td class="num" style="color:${parseInt(r.GoalDiff||0)>0?'var(--green-light)':parseInt(r.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(r.GoalDiff||0)>0?'+':''}${r.GoalDiff}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// RPI VIEW
+// ============================================================
+async function renderRPI() {
+  const el = document.getElementById('rpi-content');
+  el.innerHTML = '<div class="loading">Loading</div>';
+  try {
+    const rpiData = await loadData('rpi');
+    const seasons = getSeasons(rpiData);
+    populateSelect('rpi-season', seasons, seasons[0]);
+
+    const season = document.getElementById('rpi-season').value || seasons[0];
+    const cls = document.getElementById('rpi-class').value;
+
+    let data = rpiData.filter(r => r.Season === season);
+    if (cls !== 'all') data = data.filter(r => r.Classification === cls);
+    data = data.sort((a,b) => {
+      if (a.Classification !== b.Classification) {
+        const order = {'6A':0,'5A':1,'4A':2};
+        return (order[a.Classification]||9) - (order[b.Classification]||9);
+      }
+      return parseInt(a.Rank||99) - parseInt(b.Rank||99);
+    });
+
+    el.innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Rank</th><th>Team</th><th>Class</th>
+            <th class="num">RPI</th><th class="num">MWP</th>
+            <th class="num">OWP</th><th class="num">OOWP</th>
+            <th class="num">W</th><th class="num">L</th>
+          </tr></thead>
+          <tbody>
+            ${data.map(r => `<tr class="${r.Team==='Olympus'?'olympus-row':''}">
+              <td class="rank">#${r.Rank}</td>
+              <td class="team-name">${r.Team}</td>
+              <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
+              <td class="num rpi-val">${parseFloat(r.RPI||0).toFixed(4)}</td>
+              <td class="num">${parseFloat(r.MWP||0).toFixed(3)}</td>
+              <td class="num">${parseFloat(r.OWP||0).toFixed(3)}</td>
+              <td class="num">${parseFloat(r.OOWP||0).toFixed(3)}</td>
+              <td class="num" style="color:var(--green-light)">${r.Wins}</td>
+              <td class="num" style="color:#e88080">${r.Losses}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:1rem;font-size:12px;color:var(--text3);font-family:var(--font-display);letter-spacing:0.06em">
+        RPI = (45% × MWP) + (45% × OWP) + (10% × OOWP) — UHSAA Formula
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// MATCHUP VIEW
+// ============================================================
+async function initMatchup() {
+  const games = await loadData('games');
+  const teams = [...new Set([...games.map(g=>g.Team1),...games.map(g=>g.Team2)])]
+    .filter(Boolean).sort();
+
+  populateSelect('matchup-team1', teams, 'Olympus');
+  populateSelect('matchup-team2', teams, 'Park City');
+
+  const seasons = getSeasons(games);
+  const seasonSel = document.getElementById('matchup-season');
+  seasonSel.innerHTML = `<option value="all">All Time</option>` +
+    seasons.map(s => `<option value="${s}">${s}</option>`).join('');
+
+  renderMatchup();
+}
+
+async function renderMatchup() {
+  const el = document.getElementById('matchup-content');
+  const t1 = document.getElementById('matchup-team1')?.value;
+  const t2 = document.getElementById('matchup-team2')?.value;
+  if (!t1 || !t2 || t1 === t2) {
+    el.innerHTML = '<div class="empty">Select two different teams</div>';
+    return;
+  }
+
+  el.innerHTML = '<div class="loading">Loading</div>';
+  try {
+    const [games, teamSeasons, rpi, playerStats] = await Promise.all([
+      loadData('games'), loadData('teamSeasons'), loadData('rpi'), loadData('playerStats')
+    ]);
+
+    const season = document.getElementById('matchup-season').value;
+
+    const h2h = games.filter(g => {
+      const match = (g.Team1===t1&&g.Team2===t2)||(g.Team1===t2&&g.Team2===t1);
+      const seasonMatch = season==='all' || g.Season===season;
+      return match && seasonMatch && g.Winner;
+    }).sort((a,b) => b.Date.localeCompare(a.Date));
+
+    const t1Wins = h2h.filter(g=>g.Winner===t1).length;
+    const t2Wins = h2h.filter(g=>g.Winner===t2).length;
+
+    const currentSeason = '2025-26';
+    const t1Season = teamSeasons.find(r=>r.Season===currentSeason&&r.Team===t1)||{};
+    const t2Season = teamSeasons.find(r=>r.Season===currentSeason&&r.Team===t2)||{};
+    const t1RPI = rpi.find(r=>r.Season===currentSeason&&r.Team===t1)||{};
+    const t2RPI = rpi.find(r=>r.Season===currentSeason&&r.Team===t2)||{};
+
+    const t1Players = playerStats.filter(r=>r.Team===t1&&r.Season===currentSeason)
+      .sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
+    const t2Players = playerStats.filter(r=>r.Team===t2&&r.Season===currentSeason)
+      .sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
+
+    el.innerHTML = `
+      <div class="matchup-teams">
+        <div class="matchup-card">
+          <h3>${t1}</h3>
+          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${TEAM_CLASSIFICATIONS[t1]||''}</div>
+          <div class="matchup-record ${t1Wins>t2Wins?'win':t1Wins<t2Wins?'loss':'even'}">${t1Wins}</div>
+          <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">All-time vs ${t2}</div>
+          <div style="margin-top:12px;font-family:var(--font-display)">
+            <div style="font-size:13px;color:var(--text2)">${currentSeason}: <strong style="color:var(--text)">${t1Season.Wins||0}-${t1Season.Losses||0}</strong></div>
+            ${t1RPI.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t1RPI.RPI).toFixed(4)} (#${t1RPI.Rank})</strong></div>`:''}
+          </div>
+        </div>
+        <div class="matchup-vs">VS</div>
+        <div class="matchup-card">
+          <h3>${t2}</h3>
+          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${TEAM_CLASSIFICATIONS[t2]||''}</div>
+          <div class="matchup-record ${t2Wins>t1Wins?'win':t2Wins<t1Wins?'loss':'even'}">${t2Wins}</div>
+          <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">All-time vs ${t1}</div>
+          <div style="margin-top:12px;font-family:var(--font-display)">
+            <div style="font-size:13px;color:var(--text2)">${currentSeason}: <strong style="color:var(--text)">${t2Season.Wins||0}-${t2Season.Losses||0}</strong></div>
+            ${t2RPI.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t2RPI.RPI).toFixed(4)} (#${t2RPI.Rank})</strong></div>`:''}
+          </div>
+        </div>
+      </div>
+
+      ${h2h.length ? `
+      <div class="section-header"><div class="section-title" style="font-size:20px">Head-to-Head Results</div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Season</th><th>Winner</th><th class="num">Score</th><th>Type</th></tr></thead>
+          <tbody>
+            ${h2h.map(g => {
+              const t1scored = g.Team1===t1 ? g.Team1Score : g.Team2Score;
+              const t2scored = g.Team1===t2 ? g.Team1Score : g.Team2Score;
+              return `<tr>
+                <td style="color:var(--text3)">${g.Date}</td>
+                <td style="font-family:var(--font-display);color:var(--text2)">${g.Season}</td>
+                <td class="team-name" style="color:${g.Winner===t1?'var(--green-light)':'#e88080'}">${g.Winner}</td>
+                <td class="num">${t1scored}-${t2scored}</td>
+                <td style="color:var(--text3);font-size:12px">${g.GameType||'Game'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>` : `<div class="empty">No head-to-head games found</div>`}
+
+      <div class="two-col" style="margin-top:1.5rem">
+        <div>
+          <div class="section-header"><div class="section-title" style="font-size:18px">${t1} Top Players</div></div>
+          ${t1Players.length ? `<table>
+            <thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
+            <tbody>${t1Players.map(p=>`<tr>
+              <td class="team-name">${p.Name}</td>
+              <td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
+              <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td>
+            </tr>`).join('')}</tbody>
+          </table>` : '<div class="empty" style="padding:1rem">No stats</div>'}
+        </div>
+        <div>
+          <div class="section-header"><div class="section-title" style="font-size:18px">${t2} Top Players</div></div>
+          ${t2Players.length ? `<table>
+            <thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
+            <tbody>${t2Players.map(p=>`<tr>
+              <td class="team-name">${p.Name}</td>
+              <td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
+              <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td>
+            </tr>`).join('')}</tbody>
+          </table>` : '<div class="empty" style="padding:1rem">No stats</div>'}
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// LEADERS VIEW
+// ============================================================
+async function renderLeaders() {
+  const el = document.getElementById('leaders-content');
+  el.innerHTML = '<div class="loading">Loading</div>';
+  try {
+    const playerStats = await loadData('playerStats');
+    const seasons = getSeasons(playerStats);
+    seasons.unshift('All Time');
+    populateSelect('leaders-season', seasons, seasons[0]);
+
+    const season = document.getElementById('leaders-season').value || seasons[0];
+    const cls = document.getElementById('leaders-class').value;
+    const stat = document.getElementById('leaders-stat').value;
+
+    let data = playerStats.filter(r => r.Name && r[stat] !== '' && r[stat] !== undefined);
+    if (season !== 'All Time') data = data.filter(r => r.Season === season);
+    if (cls !== 'all') data = data.filter(r => TEAM_CLASSIFICATIONS[r.Team] === cls);
+
+    // For "All Time" aggregate by player name + team
+    let leaders;
+    if (season === 'All Time' && ['Goals','Assists','Points','GroundBalls','Saves'].includes(stat)) {
+      const agg = {};
+      data.forEach(r => {
+        const key = r.Name + '|' + r.Team;
+        if (!agg[key]) agg[key] = { Name:r.Name, Team:r.Team, val:0 };
+        agg[key].val += parseFloat(r[stat]||0);
+      });
+      leaders = Object.values(agg).sort((a,b)=>b.val-a.val).slice(0,50);
+    } else {
+      const descending = stat !== 'GAA';
+      leaders = data.map(r => ({ ...r, val: parseFloat(r[stat]||0) }))
+        .sort((a,b) => descending ? b.val-a.val : a.val-b.val)
+        .slice(0, 50);
+    }
+
+    el.innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Player</th><th>Team</th><th>Class</th>
+            ${season==='All Time'?'':'<th>Season</th><th>Yr</th>'}
+            <th class="num">${stat}</th>
+          </tr></thead>
+          <tbody>
+            ${leaders.map((r,i) => `<tr class="${r.Team==='Olympus'?'olympus-row':''}">
+              <td class="rank">${i+1}</td>
+              <td class="team-name">${r.Name}</td>
+              <td style="color:var(--text2)">${r.Team}</td>
+              <td><span class="badge badge-${(TEAM_CLASSIFICATIONS[r.Team]||'').toLowerCase()}">${TEAM_CLASSIFICATIONS[r.Team]||''}</span></td>
+              ${season==='All Time'?'':`<td style="color:var(--text3);font-family:var(--font-display)">${r.Season}</td><td style="color:var(--text3)">${r.ClassYear?r.ClassYear.substring(0,2):''}</td>`}
+              <td class="num rpi-val">${typeof r.val==='number'?r.val.toFixed(stat.includes('/')||stat==='GAA'?1:0):r[stat]}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// HISTORY VIEW
+// ============================================================
+async function initHistory() {
+  const teamSeasons = await loadData('teamSeasons');
+  const teams = [...new Set(teamSeasons.map(r=>r.Team))].filter(t=>TEAM_CLASSIFICATIONS[t]).sort();
+  populateSelect('history-team', teams, 'Olympus');
+  renderHistory();
+}
+
+async function renderHistory() {
+  const el = document.getElementById('history-content');
+  el.innerHTML = '<div class="loading">Loading</div>';
+  try {
+    const [teamSeasons, rpi, games] = await Promise.all([
+      loadData('teamSeasons'), loadData('rpi'), loadData('games')
+    ]);
+
+    const team = document.getElementById('history-team').value;
+    const seasons = teamSeasons.filter(r=>r.Team===team)
+      .sort((a,b)=>b.Season.localeCompare(a.Season));
+
+    const totalW = seasons.reduce((s,r)=>s+parseInt(r.Wins||0),0);
+    const totalL = seasons.reduce((s,r)=>s+parseInt(r.Losses||0),0);
+    const totalGF = seasons.reduce((s,r)=>s+parseInt(r.GoalsFor||0),0);
+    const totalGA = seasons.reduce((s,r)=>s+parseInt(r.GoalsAgainst||0),0);
+
+    const bestSeason = seasons.slice().sort((a,b)=>parseFloat(b.WinPct||0)-parseFloat(a.WinPct||0))[0];
+
+    el.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-val">${totalW}-${totalL}</div><div class="stat-lbl">All-Time Record</div></div>
+        <div class="stat-card"><div class="stat-val">${((totalW/(totalW+totalL||1))*100).toFixed(0)}%</div><div class="stat-lbl">Win Rate</div></div>
+        <div class="stat-card"><div class="stat-val">${seasons.length}</div><div class="stat-lbl">Seasons</div></div>
+        <div class="stat-card"><div class="stat-val">${totalGF}</div><div class="stat-lbl">Goals Scored</div></div>
+        <div class="stat-card"><div class="stat-val">${bestSeason?bestSeason.Season:'—'}</div><div class="stat-lbl">Best Season</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Season</th><th>Class</th>
+            <th class="num">W</th><th class="num">L</th><th class="num">Win%</th>
+            <th class="num">GF</th><th class="num">GA</th><th class="num">+/-</th>
+            <th class="num">RPI</th><th class="num">RPI Rank</th>
+          </tr></thead>
+          <tbody>
+            ${seasons.map(s => {
+              const r = rpi.find(r=>r.Season===s.Season&&r.Team===team);
+              return `<tr>
+                <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
+                <td><span class="badge badge-${s.Classification?.toLowerCase()}">${s.Classification}</span></td>
+                <td class="num" style="color:var(--green-light)">${s.Wins}</td>
+                <td class="num" style="color:#e88080">${s.Losses}</td>
+                <td class="num">${parseFloat(s.WinPct||0).toFixed(3)}</td>
+                <td class="num">${s.GoalsFor}</td>
+                <td class="num">${s.GoalsAgainst}</td>
+                <td class="num" style="color:${parseInt(s.GoalDiff||0)>0?'var(--green-light)':parseInt(s.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(s.GoalDiff||0)>0?'+':''}${s.GoalDiff}</td>
+                <td class="num" style="color:var(--gold-light)">${r?parseFloat(r.RPI).toFixed(4):'—'}</td>
+                <td class="num">${r?'#'+r.Rank:'—'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+loadAll().then(() => renderOlympus());
+</script>
+</body>
+</html>
