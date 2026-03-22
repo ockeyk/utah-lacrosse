@@ -507,24 +507,27 @@ async function toggleScout(id, opp, row) {
   const h2hW = h2h.filter(g=>g.Winner==='Olympus').length;
   const h2hL = h2h.filter(g=>g.Winner!=='Olympus').length;
 
+  // Normalize name — Games uses 'Judge Memorial Catholic', PlayerStats uses 'Judge Memorial'
+  const oppNorm = opp === 'Judge Memorial Catholic' ? 'Judge Memorial' : opp;
+
   // Opponent players current season
-  const oppPlayers = playerStats.filter(r=>r.Team===opp&&r.Season===CS);
+  const oppPlayers = playerStats.filter(r=>r.Team===oppNorm&&r.Season===CS);
 
   // Top scorers
   const scorers = oppPlayers.filter(p=>parseFloat(p.Goals||0)>0||parseFloat(p.Assists||0)>0)
     .sort((a,b)=>parseFloat(b.Points||0)-parseFloat(a.Points||0)).slice(0,6);
 
-  // Goalies (by GAA)
-  const goalies = oppPlayers.filter(p=>parseFloat(p.Saves||0)>0||parseFloat(p.GAA||0)>0)
-    .sort((a,b)=>parseFloat(a.GAA||99)-parseFloat(b.GAA||99)).slice(0,3);
+  // Goalies — sort by saves, show GAA and SV% when available
+  const goalies = oppPlayers.filter(p=>parseFloat(p.Saves||0)>0)
+    .sort((a,b)=>parseFloat(b.Saves||0)-parseFloat(a.Saves||0)).slice(0,3);
 
-  // Faceoffs
-  const faceoffs = oppPlayers.filter(p=>parseFloat(p.FaceoffsWon||0)>0)
-    .sort((a,b)=>parseFloat(b.FaceoffsWon||0)-parseFloat(a.FaceoffsWon||0)).slice(0,4);
+  // Faceoffs — FaceoffsWon stores FO% from leaders data
+  const faceoffs = oppPlayers.filter(p=>p.FaceoffsWon!==''&&p.FaceoffsWon!==undefined&&parseFloat(p.FaceoffsWon||0)>0)
+    .sort((a,b)=>parseFloat(b.FaceoffsWon||0)-parseFloat(a.FaceoffsWon||0)).slice(0,5);
 
-  // Ground balls & takeaways
+  // GB leaders (top 5) and TA leaders (top 4) separately
   const gbLeaders = oppPlayers.filter(p=>parseFloat(p.GroundBalls||0)>0)
-    .sort((a,b)=>parseFloat(b.GroundBalls||0)-parseFloat(a.GroundBalls||0)).slice(0,4);
+    .sort((a,b)=>parseFloat(b.GroundBalls||0)-parseFloat(a.GroundBalls||0)).slice(0,5);
   const taLeaders = oppPlayers.filter(p=>parseFloat(p.Takeaways||0)>0)
     .sort((a,b)=>parseFloat(b.Takeaways||0)-parseFloat(a.Takeaways||0)).slice(0,4);
 
@@ -557,8 +560,8 @@ async function toggleScout(id, opp, row) {
         </div>
       </div>
       <div style="text-align:right">
-        <div style="font-family:var(--font-display);font-size:13px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase">All-Time vs Olympus</div>
-        <div style="font-family:var(--font-display);font-size:28px;font-weight:900;color:${h2hW>h2hL?'var(--green-light)':h2hW<h2hL?'#e88080':'var(--gold-light)'}">${h2hW}-${h2hL}</div>
+        <div style="font-family:var(--font-display);font-size:13px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase">All-Time H2H</div>
+        <div style="font-family:var(--font-display);font-size:28px;font-weight:900;color:${h2hW>h2hL?'var(--green-light)':h2hW<h2hL?'#e88080':'var(--gold-light)'}">\${h2hW>h2hL?'Oly leads ':h2hW<h2hL?oppNorm.split(' ')[0]+' leads ':'Tied '}\${h2hW}-\${h2hL}</div>
       </div>
     </div>
 
@@ -589,7 +592,7 @@ async function toggleScout(id, opp, row) {
               <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
               <td class="sv">${p.Saves||0}</td>
               <td class="sv">${p.GAA||'—'}</td>
-              <td class="sv">${p['SV%']||p.SavePct||'—'}</td>
+              <td class="sv">${p['SV%']?parseFloat(p['SV%']).toFixed(3):'—'}</td>
             </tr>`).join('')}
           </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No goalie stats</div>'}
         </div>
@@ -599,25 +602,29 @@ async function toggleScout(id, opp, row) {
         <div class="scout-section">
           <div class="scout-section-title">Faceoffs — ${CS}</div>
           ${faceoffs.length?`<table class="scout-table">
-            <tr><td class="sn"></td><td><b>Player</b></td><td class="sm">Yr</td><td class="sv">Won</td></tr>
+            <tr><td class="sn"></td><td><b>Player</b></td><td class="sm">Yr</td><td class="sv">FO%</td></tr>
             ${faceoffs.map((p,i)=>`<tr>
               <td class="sn">${i+1}</td>
               <td class="sp">${p.Name}</td>
               <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-              <td class="sv">${p.FaceoffsWon||0}</td>
+              <td class="sv">${parseFloat(p.FaceoffsWon||0).toFixed(3)}</td>
             </tr>`).join('')}
           </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No faceoff stats</div>'}
         </div>
 
         <div class="scout-section">
-          <div class="scout-section-title">Ground Balls & Takeaways — ${CS}</div>
-          ${gbLeaders.length||taLeaders.length?`<table class="scout-table">
-            <tr><td><b>Player</b></td><td class="sv">GB</td><td class="sv">TA</td></tr>
-            ${[...new Set([...gbLeaders,...taLeaders].map(p=>p.Name))].slice(0,5).map(name=>{
-              const p = oppPlayers.find(x=>x.Name===name)||{};
-              return `<tr><td class="sp">${name}</td><td class="sv">${p.GroundBalls||0}</td><td class="sv">${p.Takeaways||0}</td></tr>`;
-            }).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats available</div>'}
+          <div class="scout-section-title">Ground Balls — ${CS}</div>
+          ${gbLeaders.length?`<table class="scout-table">
+            <tr><td class="sn"></td><td><b>Player</b></td><td class="sv">GB</td></tr>
+            ${gbLeaders.map((p,i)=>`<tr><td class="sn">${i+1}</td><td class="sp">${p.Name}</td><td class="sv">${p.GroundBalls}</td></tr>`).join('')}
+          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
+        </div>
+        <div class="scout-section">
+          <div class="scout-section-title">Takeaways — ${CS}</div>
+          ${taLeaders.length?`<table class="scout-table">
+            <tr><td class="sn"></td><td><b>Player</b></td><td class="sv">TA</td></tr>
+            ${taLeaders.map((p,i)=>`<tr><td class="sn">${i+1}</td><td class="sp">${p.Name}</td><td class="sv">${p.Takeaways}</td></tr>`).join('')}
+          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
         </div>
       </div>
     </div>
