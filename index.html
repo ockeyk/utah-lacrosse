@@ -47,9 +47,6 @@
   .section-title { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: 0.04em; text-transform: uppercase; }
   .section-sub { font-family: var(--font-display); font-size: 13px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
-  .card-title { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 1rem; }
-
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 2rem; }
   .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; text-align: center; }
   .stat-val { font-family: var(--font-display); font-weight: 900; font-size: 32px; color: var(--green-light); line-height: 1; margin-bottom: 4px; }
@@ -96,20 +93,12 @@
   .result-l { color: #e88080; font-weight: 700; }
   .result-upcoming { color: var(--green-light); font-size: 13px; }
 
-  /* GAME ROWS */
   .game-row { cursor: pointer; }
   .game-row:hover td { background: var(--surface2) !important; }
   .upcoming-row td { background: rgba(0,130,75,0.04); }
 
-  /* SCOUT PANEL */
   .scout-row td { padding: 0 !important; }
-  .scout-panel {
-    background: var(--bg3);
-    border-top: 1px solid var(--border);
-    border-bottom: 2px solid var(--green);
-    padding: 1.5rem;
-    animation: slideDown 0.2s ease;
-  }
+  .scout-panel { background: var(--bg3); border-top: 1px solid var(--border); border-bottom: 2px solid var(--green); padding: 1.5rem; animation: slideDown 0.2s ease; }
   @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 
   .scout-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem; }
@@ -119,8 +108,7 @@
   .scout-meta strong { color: var(--gold-light); }
 
   .scout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .scout-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  @media (max-width: 700px) { .scout-grid, .scout-grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .scout-grid { grid-template-columns: 1fr; } }
 
   .scout-section { margin-bottom: 1.25rem; }
   .scout-section-title { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-light); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
@@ -133,17 +121,8 @@
   .scout-table .sv { text-align: right; font-variant-numeric: tabular-nums; color: var(--green-light); font-weight: 700; }
   .scout-table .sm { text-align: right; color: var(--text3); font-size: 12px; }
 
-  .common-opp-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 8px; border-bottom: 1px solid rgba(0,130,75,0.06); font-size: 13px; }
-  .common-opp-row:last-child { border-bottom: none; }
   .w-badge { color: var(--green-light); font-weight: 700; font-size: 12px; }
   .l-badge { color: #e88080; font-weight: 700; font-size: 12px; }
-
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
-  .tab { background: none; border: none; color: var(--text3); font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
-  .tab:hover { color: var(--text2); }
-  .tab.active { color: var(--green-light); border-bottom-color: var(--green-light); }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
 
   .matchup-teams { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-bottom: 2rem; }
   .matchup-vs { font-family: var(--font-display); font-weight: 900; font-size: 28px; color: var(--text3); text-align: center; }
@@ -153,11 +132,6 @@
   .matchup-record.win { color: var(--green-light); }
   .matchup-record.loss { color: #e88080; }
   .matchup-record.even { color: var(--gold-light); }
-
-  .h2h-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-  .h2h-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
-  .h2h-num { font-family: var(--font-display); font-weight: 900; font-size: 42px; line-height: 1; margin-bottom: 4px; }
-  .h2h-lbl { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
 
   .empty { text-align: center; padding: 2rem; color: var(--text3); font-family: var(--font-display); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
   input[type="text"] { width: 240px; }
@@ -195,7 +169,7 @@
   </div>
 
   <div id="view-rpi" class="view">
-    <div class="section-header"><div class="section-title">RPI Rankings</div><div class="section-sub">UHSAA Formula</div></div>
+    <div class="section-header"><div class="section-title">RPI Rankings</div><div class="section-sub">UHSAA Formula — Live Calculated</div></div>
     <div class="controls">
       <select id="rpi-season" onchange="renderRPI()"></select>
       <select id="rpi-class" onchange="renderRPI()">
@@ -249,11 +223,13 @@
 </main>
 
 <script>
+// ============================================================
+// DATA SOURCES — RPI sheet removed; computed live from games
+// ============================================================
 const URLS = {
   games:       'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=1897266386&single=true&output=csv',
   playerStats: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=694892484&single=true&output=csv',
   teamSeasons: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=630467221&single=true&output=csv',
-  rpi:         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=47758390&single=true&output=csv',
 };
 
 const CLS = {
@@ -274,9 +250,12 @@ const CLS = {
 
 const cache = {};
 
+// ============================================================
+// CSV PARSING
+// ============================================================
 function parseCSV(text) {
   const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
   return lines.slice(1).map(line => {
     const vals = []; let cur = '', inQ = false;
     for (let c of line) {
@@ -286,7 +265,7 @@ function parseCSV(text) {
     }
     vals.push(cur.trim());
     const obj = {};
-    headers.forEach((h,i) => obj[h] = vals[i]||'');
+    headers.forEach((h, i) => obj[h] = vals[i] || '');
     return obj;
   });
 }
@@ -302,24 +281,148 @@ async function loadAll() {
   await Promise.all(Object.keys(URLS).map(loadData));
 }
 
+// ============================================================
+// RPI COMPUTATION (UHSAA formula, calculated live from games)
+//
+//   RPI = (0.45 × MWP) + (0.45 × OWP) + (0.10 × OOWP)
+//
+//   MWP  = team's own win percentage (all games)
+//   OWP  = avg win pct of opponents, excluding games vs this team
+//   OOWP = avg OWP of opponents
+//   Ranked within each classification separately.
+//   All-class games count toward OWP/OOWP regardless of class.
+// ============================================================
+const rpiCache = {};
+
+function computeRPI(games, season) {
+  // Return cached result if already computed for this season
+  if (rpiCache[season]) return rpiCache[season];
+
+  // Only completed games
+  const sg = games.filter(g => g.Season === season && g.Winner && g.Team1 && g.Team2);
+
+  // Deduplicate games by canonical key (sort teams alphabetically + date)
+  const seen = new Set();
+  const dedupedGames = sg.filter(g => {
+    const key = [g.Team1, g.Team2].sort().join('|') + '|' + g.Date;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  // Build per-team win/loss record from deduped games
+  // Only include teams in our CLS map
+  const record = {}; // team -> { w, l }
+  dedupedGames.forEach(g => {
+    const t1 = g.Team1, t2 = g.Team2;
+    if (!CLS[t1] && !CLS[t2]) return;
+    [t1, t2].forEach(t => { if (!record[t]) record[t] = { w: 0, l: 0 }; });
+    if (g.Winner === t1) { record[t1].w++; record[t2].l++; }
+    else if (g.Winner === t2) { record[t2].w++; record[t1].l++; }
+  });
+
+  // MWP for a team
+  function mwp(team) {
+    const r = record[team];
+    if (!r) return 0;
+    const total = r.w + r.l;
+    return total === 0 ? 0 : r.w / total;
+  }
+
+  // OWP for a team: avg win pct of all opponents, excluding games vs this team
+  function owp(team) {
+    const oppGames = dedupedGames.filter(g =>
+      (g.Team1 === team || g.Team2 === team)
+    );
+    const opponents = oppGames.map(g => g.Team1 === team ? g.Team2 : g.Team1);
+    if (opponents.length === 0) return 0;
+
+    const owpValues = opponents.map(opp => {
+      // Calc opp's win pct excluding all games vs this team
+      const oppFiltered = dedupedGames.filter(g =>
+        (g.Team1 === opp || g.Team2 === opp) &&
+        g.Team1 !== team && g.Team2 !== team
+      );
+      const w = oppFiltered.filter(g => g.Winner === opp).length;
+      const total = oppFiltered.length;
+      return total === 0 ? 0 : w / total;
+    });
+
+    return owpValues.reduce((s, v) => s + v, 0) / owpValues.length;
+  }
+
+  // OOWP for a team: avg OWP of opponents
+  function oowp(team) {
+    const oppGames = dedupedGames.filter(g =>
+      g.Team1 === team || g.Team2 === team
+    );
+    const opponents = [...new Set(oppGames.map(g => g.Team1 === team ? g.Team2 : g.Team1))];
+    if (opponents.length === 0) return 0;
+    const vals = opponents.map(opp => owp(opp));
+    return vals.reduce((s, v) => s + v, 0) / vals.length;
+  }
+
+  // Compute RPI for every known team that has games this season
+  const teams = Object.keys(record).filter(t => CLS[t]);
+  const results = teams.map(team => {
+    const r = record[team] || { w: 0, l: 0 };
+    const m = mwp(team);
+    const o = owp(team);
+    const oo = oowp(team);
+    const rpi = (0.45 * m) + (0.45 * o) + (0.10 * oo);
+    return {
+      Team: team,
+      Classification: CLS[team],
+      Season: season,
+      Wins: r.w,
+      Losses: r.l,
+      MWP: m,
+      OWP: o,
+      OOWP: oo,
+      RPI: rpi,
+      Rank: 0, // filled in below
+    };
+  });
+
+  // Rank within each classification
+  const classes = ['6A', '5A', '4A'];
+  classes.forEach(cls => {
+    const clsTeams = results.filter(r => r.Classification === cls)
+      .sort((a, b) => b.RPI - a.RPI);
+    clsTeams.forEach((r, i) => { r.Rank = i + 1; });
+  });
+
+  rpiCache[season] = results;
+  return results;
+}
+
+// Convenience: get a single team's RPI entry for a given season
+function getTeamRPI(games, team, season) {
+  const all = computeRPI(games, season);
+  return all.find(r => r.Team === team) || null;
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
 function showView(name, btn) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
+  document.getElementById('view-' + name).classList.add('active');
   if (btn) btn.classList.add('active');
-  const fns = {olympus:renderOlympus, standings:renderStandings, rpi:renderRPI, matchup:initMatchup, leaders:renderLeaders, history:initHistory};
+  const fns = { olympus: renderOlympus, standings: renderStandings, rpi: renderRPI, matchup: initMatchup, leaders: renderLeaders, history: initHistory };
   if (fns[name]) fns[name]();
 }
 
 function getSeasons(data) {
-  return [...new Set(data.map(r=>r.Season))].filter(Boolean).sort().reverse();
+  return [...new Set(data.map(r => r.Season))].filter(Boolean).sort().reverse();
 }
 
 function populateSelect(id, options, selected) {
   const el = document.getElementById(id);
   if (!el) return;
   const cur = el.value || selected;
-  el.innerHTML = options.map(o=>`<option value="${o}" ${o===cur?'selected':''}>${o}</option>`).join('');
+  el.innerHTML = options.map(o => `<option value="${o}" ${o === cur ? 'selected' : ''}>${o}</option>`).join('');
 }
 
 // ============================================================
@@ -328,30 +431,34 @@ function populateSelect(id, options, selected) {
 async function renderOlympus() {
   const el = document.getElementById('olympus-content');
   try {
-    const [games, teamSeasons, rpi, playerStats] = await Promise.all([
-      loadData('games'), loadData('teamSeasons'), loadData('rpi'), loadData('playerStats')
+    const [games, teamSeasons, playerStats] = await Promise.all([
+      loadData('games'), loadData('teamSeasons'), loadData('playerStats')
     ]);
     const CS = '2025-26';
 
-    const oGames = games.filter(g =>
-      g.Season === CS && (g.Team1==='Olympus'||g.Team2==='Olympus')
-    ).sort((a,b) => a.Date.localeCompare(b.Date)||(b.Team1Score||'').localeCompare(a.Team1Score||''))
-    .filter((g,i,arr) => {
-      const opp = g.Team1==='Olympus'?g.Team2:g.Team1;
-      const key = g.Date+'|'+opp;
-      return arr.findIndex(x=>{const xo=x.Team1==='Olympus'?x.Team2:x.Team1; return x.Date+'|'+xo===key;})===i;
-    });
+    // Deduplicate Olympus games: one row per (date, opponent)
+    const oGames = games
+      .filter(g => g.Season === CS && (g.Team1 === 'Olympus' || g.Team2 === 'Olympus'))
+      .sort((a, b) => a.Date.localeCompare(b.Date))
+      .filter((g, i, arr) => {
+        const opp = g.Team1 === 'Olympus' ? g.Team2 : g.Team1;
+        const key = g.Date + '|' + opp;
+        return arr.findIndex(x => {
+          const xo = x.Team1 === 'Olympus' ? x.Team2 : x.Team1;
+          return x.Date + '|' + xo === key;
+        }) === i;
+      });
 
-    const oSeason = teamSeasons.find(r=>r.Season===CS&&r.Team==='Olympus')||{};
-    const oRPI = rpi.find(r=>r.Season===CS&&r.Team==='Olympus')||{};
-    const oPlayers = playerStats.filter(r=>r.Team==='Olympus'&&r.Season===CS)
-      .sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0));
-    const allSeasons = teamSeasons.filter(r=>r.Team==='Olympus');
-    const totalW = allSeasons.reduce((s,r)=>s+parseInt(r.Wins||0),0);
-    const totalL = allSeasons.reduce((s,r)=>s+parseInt(r.Losses||0),0);
-    const played = oGames.filter(g=>g.Winner);
-    const wins = played.filter(g=>g.Winner==='Olympus').length;
-    const losses = played.filter(g=>g.Winner!=='Olympus'&&g.Winner).length;
+    const oSeason = teamSeasons.find(r => r.Season === CS && r.Team === 'Olympus') || {};
+    const oRPI = getTeamRPI(games, 'Olympus', CS);
+    const oPlayers = playerStats.filter(r => r.Team === 'Olympus' && r.Season === CS)
+      .sort((a, b) => parseFloat(b.Goals || 0) - parseFloat(a.Goals || 0));
+    const allSeasons = teamSeasons.filter(r => r.Team === 'Olympus');
+    const totalW = allSeasons.reduce((s, r) => s + parseInt(r.Wins || 0), 0);
+    const totalL = allSeasons.reduce((s, r) => s + parseInt(r.Losses || 0), 0);
+    const played = oGames.filter(g => g.Winner);
+    const wins = played.filter(g => g.Winner === 'Olympus').length;
+    const losses = played.filter(g => g.Winner !== 'Olympus' && g.Winner).length;
 
     el.innerHTML = `
       <div class="olympus-hero">
@@ -363,7 +470,7 @@ async function renderOlympus() {
           <div class="olympus-meta">
             <span>5A Region 6</span>
             <span>${CS} Record: <strong>${wins}-${losses}</strong></span>
-            ${oRPI.RPI?`<span>RPI Rank: <strong>#${oRPI.Rank}</strong> (${parseFloat(oRPI.RPI).toFixed(4)})</span>`:''}
+            ${oRPI ? `<span>RPI Rank: <strong>#${oRPI.Rank}</strong> (${oRPI.RPI.toFixed(4)})</span>` : ''}
             <span>All-Time: <strong>${totalW}-${totalL}</strong></span>
           </div>
         </div>
@@ -371,9 +478,9 @@ async function renderOlympus() {
 
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-val">${wins}-${losses}</div><div class="stat-lbl">${CS} Record</div></div>
-        <div class="stat-card"><div class="stat-val">${oRPI.Rank?'#'+oRPI.Rank:'—'}</div><div class="stat-lbl">5A RPI Rank</div></div>
-        <div class="stat-card"><div class="stat-val">${oSeason.GoalsFor||'—'}</div><div class="stat-lbl">Goals For</div></div>
-        <div class="stat-card"><div class="stat-val">${oSeason.GoalsAgainst||'—'}</div><div class="stat-lbl">Goals Against</div></div>
+        <div class="stat-card"><div class="stat-val">${oRPI ? '#' + oRPI.Rank : '—'}</div><div class="stat-lbl">5A RPI Rank</div></div>
+        <div class="stat-card"><div class="stat-val">${oSeason.GoalsFor || '—'}</div><div class="stat-lbl">Goals For</div></div>
+        <div class="stat-card"><div class="stat-val">${oSeason.GoalsAgainst || '—'}</div><div class="stat-lbl">Goals Against</div></div>
         <div class="stat-card"><div class="stat-val">${totalW}-${totalL}</div><div class="stat-lbl">All-Time Record</div></div>
       </div>
 
@@ -387,25 +494,25 @@ async function renderOlympus() {
             <table>
               <thead><tr><th>Date</th><th>Opponent</th><th>H2H</th><th>Result</th><th>Score</th></tr></thead>
               <tbody>
-                ${oGames.map((g,idx)=>{
-                  const isHome = g.Team1==='Olympus';
-                  const opp = isHome?g.Team2:g.Team1;
-                  const oScore = isHome?g.Team2Score:g.Team1Score;
-                  const myScore = isHome?g.Team1Score:g.Team2Score;
-                  const won = g.Winner==='Olympus';
-                  const didPlay = g.Winner!=='';
-                  const result = !didPlay?'—':won?'W':'L';
-                  const score = didPlay&&myScore!==''?`${myScore}-${oScore}`:'Scout ›';
-                  const h2h = games.filter(x=>((x.Team1==='Olympus'&&x.Team2===opp)||(x.Team2==='Olympus'&&x.Team1===opp))&&x.Winner);
-                  const hw = h2h.filter(x=>x.Winner==='Olympus').length;
-                  const hl = h2h.filter(x=>x.Winner!=='Olympus').length;
-                  const oppSafe = opp.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-                  return `<tr class="game-row ${didPlay?'played-row':'upcoming-row'}" onclick="toggleScout('scout-${idx}','${oppSafe}',this)">
-                    <td style="color:var(--text3);font-size:13px">${g.Date?g.Date.substring(5):''}</td>
-                    <td class="team-name">${opp}${!isHome?' <span style="color:var(--text3);font-size:11px">@</span>':''}</td>
-                    <td style="font-size:12px;color:var(--text3)">${h2h.length?hw+'-'+hl:'—'}</td>
-                    <td class="${didPlay?(won?'result-w':'result-l'):'result-upcoming'}">${result}</td>
-                    <td style="font-variant-numeric:tabular-nums;color:${!didPlay?'var(--green-light)':'var(--text)'}">${score}</td>
+                ${oGames.map((g, idx) => {
+                  const isHome = g.Team1 === 'Olympus';
+                  const opp = isHome ? g.Team2 : g.Team1;
+                  const oScore = isHome ? g.Team2Score : g.Team1Score;
+                  const myScore = isHome ? g.Team1Score : g.Team2Score;
+                  const won = g.Winner === 'Olympus';
+                  const didPlay = g.Winner !== '';
+                  const result = !didPlay ? '—' : won ? 'W' : 'L';
+                  const score = didPlay && myScore !== '' ? `${myScore}-${oScore}` : 'Scout ›';
+                  const h2h = games.filter(x => ((x.Team1 === 'Olympus' && x.Team2 === opp) || (x.Team2 === 'Olympus' && x.Team1 === opp)) && x.Winner);
+                  const hw = h2h.filter(x => x.Winner === 'Olympus').length;
+                  const hl = h2h.filter(x => x.Winner !== 'Olympus').length;
+                  const oppSafe = opp.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+                  return `<tr class="game-row ${didPlay ? 'played-row' : 'upcoming-row'}" onclick="toggleScout('scout-${idx}','${oppSafe}',this)">
+                    <td style="color:var(--text3);font-size:13px">${g.Date ? g.Date.substring(5) : ''}</td>
+                    <td class="team-name">${opp}${!isHome ? ' <span style="color:var(--text3);font-size:11px">@</span>' : ''}</td>
+                    <td style="font-size:12px;color:var(--text3)">${h2h.length ? hw + '-' + hl : '—'}</td>
+                    <td class="${didPlay ? (won ? 'result-w' : 'result-l') : 'result-upcoming'}">${result}</td>
+                    <td style="font-variant-numeric:tabular-nums;color:${!didPlay ? 'var(--green-light)' : 'var(--text)'}">${score}</td>
                   </tr>
                   <tr id="scout-${idx}" class="scout-row" style="display:none">
                     <td colspan="5" style="padding:0">
@@ -422,21 +529,21 @@ async function renderOlympus() {
 
         <div>
           <div class="section-header"><div class="section-title" style="font-size:20px">Roster Stats</div></div>
-          ${oPlayers.length?`
+          ${oPlayers.length ? `
           <div class="table-wrap">
             <table>
               <thead><tr><th>#</th><th>Player</th><th>Yr</th><th class="num">GP</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th><th class="num">GB</th><th class="num">TO</th></tr></thead>
               <tbody>
-                ${oPlayers.map(p=>`<tr>
-                  <td style="color:var(--text3)">${p.Jersey||''}</td>
+                ${oPlayers.map(p => `<tr>
+                  <td style="color:var(--text3)">${p.Jersey || ''}</td>
                   <td class="team-name">${p.Name}</td>
-                  <td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-                  <td class="num">${p.GP||''}</td>
-                  <td class="num" style="color:var(--green-light)">${p.Goals||''}</td>
-                  <td class="num">${p.Assists||''}</td>
-                  <td class="num">${p.Points||''}</td>
-                  <td class="num">${p.GroundBalls||''}</td>
-                  <td class="num">${p.Turnovers||''}</td>
+                  <td style="color:var(--text3)">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+                  <td class="num">${p.GP || ''}</td>
+                  <td class="num" style="color:var(--green-light)">${p.Goals || ''}</td>
+                  <td class="num">${p.Assists || ''}</td>
+                  <td class="num">${p.Points || ''}</td>
+                  <td class="num">${p.GroundBalls || ''}</td>
+                  <td class="num">${p.Turnovers || ''}</td>
                 </tr>`).join('')}
               </tbody>
             </table>
@@ -448,15 +555,15 @@ async function renderOlympus() {
               <table>
                 <thead><tr><th>Season</th><th>W</th><th>L</th><th class="num">GF</th><th class="num">GA</th><th class="num">RPI Rank</th></tr></thead>
                 <tbody>
-                  ${allSeasons.sort((a,b)=>b.Season.localeCompare(a.Season)).map(s=>{
-                    const r = rpi.find(r=>r.Season===s.Season&&r.Team==='Olympus');
+                  ${allSeasons.sort((a, b) => b.Season.localeCompare(a.Season)).map(s => {
+                    const r = getTeamRPI(games, 'Olympus', s.Season);
                     return `<tr>
                       <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
                       <td style="color:var(--green-light)">${s.Wins}</td>
                       <td style="color:#e88080">${s.Losses}</td>
                       <td class="num">${s.GoalsFor}</td>
                       <td class="num">${s.GoalsAgainst}</td>
-                      <td class="num" style="color:var(--gold-light)">${r?'#'+r.Rank:'—'}</td>
+                      <td class="num" style="color:var(--gold-light)">${r ? '#' + r.Rank : '—'}</td>
                     </tr>`;
                   }).join('')}
                 </tbody>
@@ -466,7 +573,7 @@ async function renderOlympus() {
         </div>
       </div>
     `;
-  } catch(e) {
+  } catch (e) {
     el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
   }
 }
@@ -478,7 +585,7 @@ const openScouts = new Set();
 
 async function toggleScout(id, opp, row) {
   const scoutRow = document.getElementById(id);
-  const panel = document.getElementById('panel-'+id.replace('scout-',''));
+  const panel = document.getElementById('panel-' + id.replace('scout-', ''));
   if (!scoutRow) return;
 
   if (scoutRow.style.display !== 'none') {
@@ -490,82 +597,68 @@ async function toggleScout(id, opp, row) {
   scoutRow.style.display = '';
   openScouts.add(id);
 
-  const [games, playerStats, teamSeasons, rpi] = await Promise.all([
-    loadData('games'), loadData('playerStats'), loadData('teamSeasons'), loadData('rpi')
+  const [games, playerStats, teamSeasons] = await Promise.all([
+    loadData('games'), loadData('playerStats'), loadData('teamSeasons')
   ]);
 
   const CS = '2025-26';
+  const oppSeason = teamSeasons.find(r => r.Season === CS && r.Team === opp) || {};
+  const oppRPI = getTeamRPI(games, opp, CS);
+  const cls = CLS[opp] || '';
 
-  // Opponent current season record
-  const oppSeason = teamSeasons.find(r=>r.Season===CS&&r.Team===opp)||{};
-  const oppRPI = rpi.find(r=>r.Season===CS&&r.Team===opp)||{};
-  const cls = CLS[opp]||'';
+  const h2h = games.filter(g => ((g.Team1 === 'Olympus' && g.Team2 === opp) || (g.Team2 === 'Olympus' && g.Team1 === opp)) && g.Winner)
+    .sort((a, b) => b.Date.localeCompare(a.Date));
+  const h2hW = h2h.filter(g => g.Winner === 'Olympus').length;
+  const h2hL = h2h.filter(g => g.Winner !== 'Olympus').length;
 
-  // All-time H2H
-  const h2h = games.filter(g=>((g.Team1==='Olympus'&&g.Team2===opp)||(g.Team2==='Olympus'&&g.Team1===opp))&&g.Winner)
-    .sort((a,b)=>b.Date.localeCompare(a.Date));
-  const h2hW = h2h.filter(g=>g.Winner==='Olympus').length;
-  const h2hL = h2h.filter(g=>g.Winner!=='Olympus').length;
-
-  // Normalize name — Games uses 'Judge Memorial Catholic', PlayerStats uses 'Judge Memorial'
+  // Normalize team name for player stats lookup
   const oppNorm = opp === 'Judge Memorial Catholic' ? 'Judge Memorial' : opp;
+  const oppPlayers = playerStats.filter(r => r.Team === oppNorm && r.Season === CS);
 
-  // Opponent players current season
-  const oppPlayers = playerStats.filter(r=>r.Team===oppNorm&&r.Season===CS);
+  const scorers = oppPlayers.filter(p => parseFloat(p.Goals || 0) > 0 || parseFloat(p.Assists || 0) > 0)
+    .sort((a, b) => parseFloat(b.Points || 0) - parseFloat(a.Points || 0)).slice(0, 6);
+  const goalies = oppPlayers.filter(p => parseFloat(p.Saves || 0) > 0)
+    .sort((a, b) => parseFloat(b.Saves || 0) - parseFloat(a.Saves || 0)).slice(0, 3);
+  const faceoffs = oppPlayers.filter(p => p.FaceoffsWon !== '' && parseFloat(p.FaceoffsWon || 0) > 0)
+    .sort((a, b) => parseFloat(b.FaceoffsWon || 0) - parseFloat(a.FaceoffsWon || 0)).slice(0, 5);
+  const gbLeaders = oppPlayers.filter(p => parseFloat(p.GroundBalls || 0) > 0)
+    .sort((a, b) => parseFloat(b.GroundBalls || 0) - parseFloat(a.GroundBalls || 0)).slice(0, 5);
+  const taLeaders = oppPlayers.filter(p => parseFloat(p.Takeaways || 0) > 0)
+    .sort((a, b) => parseFloat(b.Takeaways || 0) - parseFloat(a.Takeaways || 0)).slice(0, 4);
 
-  // Top scorers
-  const scorers = oppPlayers.filter(p=>parseFloat(p.Goals||0)>0||parseFloat(p.Assists||0)>0)
-    .sort((a,b)=>parseFloat(b.Points||0)-parseFloat(a.Points||0)).slice(0,6);
-
-  // Goalies — sort by saves, show GAA and SV% when available
-  const goalies = oppPlayers.filter(p=>parseFloat(p.Saves||0)>0)
-    .sort((a,b)=>parseFloat(b.Saves||0)-parseFloat(a.Saves||0)).slice(0,3);
-
-  // Faceoffs — FaceoffsWon stores FO% from leaders data
-  const faceoffs = oppPlayers.filter(p=>p.FaceoffsWon!==''&&p.FaceoffsWon!==undefined&&parseFloat(p.FaceoffsWon||0)>0)
-    .sort((a,b)=>parseFloat(b.FaceoffsWon||0)-parseFloat(a.FaceoffsWon||0)).slice(0,5);
-
-  // GB leaders (top 5) and TA leaders (top 4) separately
-  const gbLeaders = oppPlayers.filter(p=>parseFloat(p.GroundBalls||0)>0)
-    .sort((a,b)=>parseFloat(b.GroundBalls||0)-parseFloat(a.GroundBalls||0)).slice(0,5);
-  const taLeaders = oppPlayers.filter(p=>parseFloat(p.Takeaways||0)>0)
-    .sort((a,b)=>parseFloat(b.Takeaways||0)-parseFloat(a.Takeaways||0)).slice(0,4);
-
-  // Common opponents this season
-  const olympusOpps = new Set(games.filter(g=>g.Season===CS&&(g.Team1==='Olympus'||g.Team2==='Olympus')&&g.Winner)
-    .map(g=>g.Team1==='Olympus'?g.Team2:g.Team1));
-  const oppOpps = games.filter(g=>g.Season===CS&&(g.Team1===opp||g.Team2===opp)&&g.Winner)
-    .map(g=>g.Team1===opp?g.Team2:g.Team1);
-  const common = [...new Set(oppOpps.filter(t=>olympusOpps.has(t)&&t!=='Olympus'&&t!==opp))];
-
-  const commonRows = common.map(t=>{
-    const oGame = games.find(g=>g.Season===CS&&((g.Team1==='Olympus'&&g.Team2===t)||(g.Team2==='Olympus'&&g.Team1===t))&&g.Winner);
-    const oppGame = games.find(g=>g.Season===CS&&((g.Team1===opp&&g.Team2===t)||(g.Team2===opp&&g.Team1===t))&&g.Winner);
-    const oRes = oGame?oGame.Winner==='Olympus'?'W':'L':'—';
-    const oppRes = oppGame?oppGame.Winner===opp?'W':'L':'—';
-    const oScore = oGame?(oGame.Team1==='Olympus'?`${oGame.Team1Score}-${oGame.Team2Score}`:`${oGame.Team2Score}-${oGame.Team1Score}`):'';
-    const oppScore = oppGame?(oppGame.Team1===opp?`${oppGame.Team1Score}-${oppGame.Team2Score}`:`${oppGame.Team2Score}-${oppGame.Team1Score}`):'';
-    return {t, oRes, oScore, oppRes, oppScore};
+  // Common opponents
+  const olympusOpps = new Set(games.filter(g => g.Season === CS && (g.Team1 === 'Olympus' || g.Team2 === 'Olympus') && g.Winner)
+    .map(g => g.Team1 === 'Olympus' ? g.Team2 : g.Team1));
+  const oppOpps = games.filter(g => g.Season === CS && (g.Team1 === opp || g.Team2 === opp) && g.Winner)
+    .map(g => g.Team1 === opp ? g.Team2 : g.Team1);
+  const common = [...new Set(oppOpps.filter(t => olympusOpps.has(t) && t !== 'Olympus' && t !== opp))];
+  const commonRows = common.map(t => {
+    const oGame = games.find(g => g.Season === CS && ((g.Team1 === 'Olympus' && g.Team2 === t) || (g.Team2 === 'Olympus' && g.Team1 === t)) && g.Winner);
+    const oppGame = games.find(g => g.Season === CS && ((g.Team1 === opp && g.Team2 === t) || (g.Team2 === opp && g.Team1 === t)) && g.Winner);
+    const oRes = oGame ? oGame.Winner === 'Olympus' ? 'W' : 'L' : '—';
+    const oppRes = oppGame ? oppGame.Winner === opp ? 'W' : 'L' : '—';
+    const oScore = oGame ? (oGame.Team1 === 'Olympus' ? `${oGame.Team1Score}-${oGame.Team2Score}` : `${oGame.Team2Score}-${oGame.Team1Score}`) : '';
+    const oppScore = oppGame ? (oppGame.Team1 === opp ? `${oppGame.Team1Score}-${oppGame.Team2Score}` : `${oppGame.Team2Score}-${oppGame.Team1Score}`) : '';
+    return { t, oRes, oScore, oppRes, oppScore };
   });
+
+  const h2hLabel = h2hW > h2hL ? 'Oly leads' : h2hW < h2hL ? oppNorm.split(' ')[0] + ' leads' : 'Tied';
+  const h2hColor = h2hW > h2hL ? 'var(--green-light)' : h2hW < h2hL ? '#e88080' : 'var(--gold-light)';
 
   panel.innerHTML = `
     <div class="scout-header">
       <div>
         <div class="scout-team-name">${opp}</div>
         <div class="scout-meta">
-          ${cls?`<span><span class="badge badge-${cls.toLowerCase()}">${cls}</span></span>`:''}
-          <span>${CS} Record: <strong>${oppSeason.Wins||0}-${oppSeason.Losses||0}</strong></span>
-          ${oppRPI.RPI?`<span>RPI: <strong>#${oppRPI.Rank}</strong> (${parseFloat(oppRPI.RPI).toFixed(4)})</span>`:''}
-          <span>GF: <strong>${oppSeason.GoalsFor||'—'}</strong> GA: <strong>${oppSeason.GoalsAgainst||'—'}</strong></span>
+          ${cls ? `<span><span class="badge badge-${cls.toLowerCase()}">${cls}</span></span>` : ''}
+          <span>${CS} Record: <strong>${oppSeason.Wins || 0}-${oppSeason.Losses || 0}</strong></span>
+          ${oppRPI ? `<span>RPI: <strong>#${oppRPI.Rank}</strong> (${oppRPI.RPI.toFixed(4)})</span>` : ''}
+          <span>GF: <strong>${oppSeason.GoalsFor || '—'}</strong> GA: <strong>${oppSeason.GoalsAgainst || '—'}</strong></span>
         </div>
       </div>
       <div style="text-align:right">
         <div style="font-family:var(--font-display);font-size:13px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase">All-Time H2H</div>
-        <div style="font-family:var(--font-display);font-size:28px;font-weight:900;color:${h2hW>h2hL?'var(--green-light)':h2hW<h2hL?'#e88080':'var(--gold-light)'}">
-          ${h2hW>h2hL?'Oly leads ':h2hW<h2hL?oppNorm.split(' ')[0]+' leads ':'Tied '}${h2hW}-${h2hL}
-        </div>
-      </div>
-    </div>
+        <div style="font-family:var(--font-display);font-size:28px;font-weight:900;color:${h2hColor}">${h2hLabel} ${h2hW}-${h2hL}</div>
       </div>
     </div>
 
@@ -573,971 +666,89 @@ async function toggleScout(id, opp, row) {
       <div>
         <div class="scout-section">
           <div class="scout-section-title">Top Scorers — ${CS}</div>
-          ${scorers.length?`<table class="scout-table">
-            <tr><td class="sn">#</td><td><b>Player</b></td><td class="sv">G</td><td class="sv">A</td><td class="sv">Pts</td></tr>
-            ${scorers.map((p,i)=>`<tr>
-              <td class="sn">${p.Jersey||}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sv">${p.Goals||0}</td>
-              <td class="sv">${p.Assists||0}</td>
-              <td class="sv">${p.Points||0}</td>
-            </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats available</div>'}
-        </div>
-
-        <div class="scout-section">
-          <div class="scout-section-title">Goaltending — ${CS}</div>
-          ${goalies.length?`<table class="scout-table">
-            <tr><td class="sn">#</td><td><b>Player</b></td><td class="sv">Saves</td><td class="sv">GAA</td><td class="sv">SV%</td></tr>
-            ${goalies.map((p,i)=>`<tr>
-              <td class="sn">${p.Jersey||}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-              <td class="num">${p.Saves||0}</td>
-              <td class="num">${p.GAA||'—'}</td>
-              <td class="num">${p['SV%']?parseFloat(p['SV%']).toFixed(3):'—'}</td>
-            </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No goalie stats</div>'}
-        </div>
-      </div>
-
-      <div>
-        <div class="scout-section">
-          <div class="scout-section-title">Faceoffs — ${CS}</div>
-          ${faceoffs.length?`<table class="scout-table">
-            <tr><td class="sn">#</td><td><b>Player</b></td><td class="sv">FO%</td></tr>
-            ${faceoffs.map((p,i)=>`<tr>
-              <td class="sn">${p.Jersey||}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sv">${parseFloat(p.FaceoffsWon||0).toFixed(3)}</td>
-            </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No faceoff stats</div>'}
-        </div>
-
-        <div class="scout-section">
-          <div class="scout-section-title">Ground Balls — ${CS}</div>
-          ${gbLeaders.length?`<table class="scout-table">
-            <tr><td class="sn">#</td><td><b>Player</b></td><td class="sv">GB</td></tr>
-            ${gbLeaders.map((p,i)=>`<tr><td class="sn">${p.Jersey||''}</td><td class="sp">${p.Name}</td><td class="sv">${p.GroundBalls}</td></tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
-        </div>
-        <div class="scout-section">
-          <div class="scout-section-title">Takeaways — ${CS}</div>
-          ${taLeaders.length?`<table class="scout-table">
-            <tr><td class="sn">#</td><td><b>Player</b></td><td class="sv">TA</td></tr>
-            ${taLeaders.map((p,i)=>`<tr><td class="sn">${p.Jersey||''}</td><td class="sp">${p.Name}</td><td class="sv">${p.Takeaways}</td></tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
-        </div>
-      </div>
-    </div>
-
-    ${commonRows.length?`
-    <div class="scout-section">
-      <div class="scout-section-title">Common Opponents — ${CS}</div>
-      <table class="scout-table">
-        <tr><td><b>Opponent</b></td><td class="sv">Olympus</td><td class="sm">Score</td><td class="sv">${opp.split(' ')[0]}</td><td class="sm">Score</td></tr>
-        ${commonRows.map(r=>`<tr>
-          <td class="sp">${r.t}</td>
-          <td class="sv"><span class="${r.oRes==='W'?'w-badge':'l-badge'}">${r.oRes}</span></td>
-          <td class="sm">${r.oScore}</td>
-          <td class="sv"><span class="${r.oppRes==='W'?'w-badge':'l-badge'}">${r.oppRes}</span></td>
-          <td class="sm">${r.oppScore}</td>
-        </tr>`).join('')}
-      </table>
-    </div>`:''}
-
-    ${h2h.length?`
-    <div class="scout-section">
-      <div class="scout-section-title">All-Time Head to Head</div>
-      <table class="scout-table">
-        <tr><td><b>Date</b></td><td><b>Season</b></td><td class="sv">Winner</td><td class="sm">Score</td></tr>
-        ${h2h.slice(0,8).map(g=>{
-          const myScore = g.Team1==='Olympus'?g.Team1Score:g.Team2Score;
-          const oppScore = g.Team1==='Olympus'?g.Team2Score:g.Team1Score;
-          return `<tr>
-            <td class="sm">${g.Date}</td>
-            <td class="sm">${g.Season}</td>
-            <td class="sv"><span class="${g.Winner==='Olympus'?'w-badge':'l-badge'}">${g.Winner==='Olympus'?'OLY':'OPP'}</span></td>
-            <td class="sm">${myScore}-${oppScore}</td>
-          </tr>`;
-        }).join('')}
-      </table>
-    </div>`:''}
-  `;
-}
-
-// ============================================================
-// STANDINGS
-// ============================================================
-async function renderStandings() {
-  const el = document.getElementById('standings-content');
-  el.innerHTML = '<div class="loading">Loading</div>';
-  try {
-    const teamSeasons = await loadData('teamSeasons');
-    const seasons = getSeasons(teamSeasons);
-    populateSelect('standings-season', seasons, seasons[0]);
-    const season = document.getElementById('standings-season').value||seasons[0];
-    const cls = document.getElementById('standings-class').value;
-    let data = teamSeasons.filter(r=>r.Season===season);
-    if (cls!=='all') data = data.filter(r=>r.Classification===cls);
-    data = data.sort((a,b)=>parseFloat(b.WinPct||0)-parseFloat(a.WinPct||0)||parseInt(b.Wins||0)-parseInt(a.Wins||0));
-    el.innerHTML = `<div class="table-wrap"><table>
-      <thead><tr><th>#</th><th>Team</th><th>Class</th><th class="num">W</th><th class="num">L</th><th class="num">Win%</th><th class="num">GF</th><th class="num">GA</th><th class="num">+/-</th></tr></thead>
-      <tbody>${data.map((r,i)=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
-        <td class="rank">${i+1}</td><td class="team-name">${r.Team}</td>
-        <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
-        <td class="num" style="color:var(--green-light)">${r.Wins}</td>
-        <td class="num" style="color:#e88080">${r.Losses}</td>
-        <td class="num">${parseFloat(r.WinPct||0).toFixed(3)}</td>
-        <td class="num">${r.GoalsFor}</td><td class="num">${r.GoalsAgainst}</td>
-        <td class="num" style="color:${parseInt(r.GoalDiff||0)>0?'var(--green-light)':parseInt(r.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(r.GoalDiff||0)>0?'+':''}${r.GoalDiff}</td>
-      </tr>`).join('')}</tbody>
-    </table></div>`;
-  } catch(e) { el.innerHTML=`<div class="empty">Error: ${e.message}</div>`; }
-}
-
-// ============================================================
-// RPI
-// ============================================================
-async function renderRPI() {
-  const el = document.getElementById('rpi-content');
-  el.innerHTML = '<div class="loading">Loading</div>';
-  try {
-    const rpiData = await loadData('rpi');
-    const seasons = getSeasons(rpiData);
-    populateSelect('rpi-season', seasons, seasons[0]);
-    const season = document.getElementById('rpi-season').value||seasons[0];
-    const cls = document.getElementById('rpi-class').value;
-    let data = rpiData.filter(r=>r.Season===season);
-    if (cls!=='all') data = data.filter(r=>r.Classification===cls);
-    data = data.sort((a,b)=>{
-      if (a.Classification!==b.Classification){const o={'6A':0,'5A':1,'4A':2};return (o[a.Classification]||9)-(o[b.Classification]||9);}
-      return parseInt(a.Rank||99)-parseInt(b.Rank||99);
-    });
-    el.innerHTML = `<div class="table-wrap"><table>
-      <thead><tr><th>Rank</th><th>Team</th><th>Class</th><th class="num">RPI</th><th class="num">MWP</th><th class="num">OWP</th><th class="num">OOWP</th><th class="num">W</th><th class="num">L</th></tr></thead>
-      <tbody>${data.map(r=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
-        <td class="rank">#${r.Rank}</td><td class="team-name">${r.Team}</td>
-        <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
-        <td class="num rpi-val">${parseFloat(r.RPI||0).toFixed(4)}</td>
-        <td class="num">${parseFloat(r.MWP||0).toFixed(3)}</td>
-        <td class="num">${parseFloat(r.OWP||0).toFixed(3)}</td>
-        <td class="num">${parseFloat(r.OOWP||0).toFixed(3)}</td>
-        <td class="num" style="color:var(--green-light)">${r.Wins}</td>
-        <td class="num" style="color:#e88080">${r.Losses}</td>
-      </tr>`).join('')}</tbody>
-    </table></div>
-    <div style="margin-top:1rem;font-size:12px;color:var(--text3);font-family:var(--font-display);letter-spacing:0.06em">RPI = (45% × MWP) + (45% × OWP) + (10% × OOWP) — UHSAA Formula</div>`;
-  } catch(e) { el.innerHTML=`<div class="empty">Error: ${e.message}</div>`; }
-}
-
-// ============================================================
-// MATCHUP
-// ============================================================
-async function initMatchup() {
-  const games = await loadData('games');
-  const teams = [...new Set([...games.map(g=>g.Team1),...games.map(g=>g.Team2)])].filter(t=>CLS[t]).sort();
-  populateSelect('matchup-team1', teams, 'Olympus');
-  populateSelect('matchup-team2', teams, 'Park City');
-  const seasons = getSeasons(games);
-  const sel = document.getElementById('matchup-season');
-  sel.innerHTML = `<option value="all">All Time</option>`+seasons.map(s=>`<option value="${s}">${s}</option>`).join('');
-  renderMatchup();
-}
-
-async function renderMatchup() {
-  const el = document.getElementById('matchup-content');
-  const t1 = document.getElementById('matchup-team1')?.value;
-  const t2 = document.getElementById('matchup-team2')?.value;
-  if (!t1||!t2||t1===t2){el.innerHTML='<div class="empty">Select two different teams</div>';return;}
-  el.innerHTML='<div class="loading">Loading</div>';
-  try {
-    const [games,teamSeasons,rpi,playerStats] = await Promise.all([loadData('games'),loadData('teamSeasons'),loadData('rpi'),loadData('playerStats')]);
-    const season = document.getElementById('matchup-season').value;
-    const CS = '2025-26';
-    const h2h = games.filter(g=>{
-      const match=(g.Team1===t1&&g.Team2===t2)||(g.Team1===t2&&g.Team2===t1);
-      return match&&(season==='all'||g.Season===season)&&g.Winner;
-    }).sort((a,b)=>b.Date.localeCompare(a.Date));
-    const t1W=h2h.filter(g=>g.Winner===t1).length, t2W=h2h.filter(g=>g.Winner===t2).length;
-    const t1S=teamSeasons.find(r=>r.Season===CS&&r.Team===t1)||{};
-    const t2S=teamSeasons.find(r=>r.Season===CS&&r.Team===t2)||{};
-    const t1R=rpi.find(r=>r.Season===CS&&r.Team===t1)||{};
-    const t2R=rpi.find(r=>r.Season===CS&&r.Team===t2)||{};
-    const t1P=playerStats.filter(r=>r.Team===t1&&r.Season===CS).sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
-    const t2P=playerStats.filter(r=>r.Team===t2&&r.Season===CS).sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
-    el.innerHTML=`
-      <div class="matchup-teams">
-        <div class="matchup-card">
-          <h3>${t1}</h3>
-          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t1]||''}</div>
-          <div class="matchup-record ${t1W>t2W?'win':t1W<t2W?'loss':'even'}">${t1W}</div>
-          <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">vs ${t2}</div>
-          <div style="margin-top:12px;font-family:var(--font-display)">
-            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t1S.Wins||0}-${t1S.Losses||0}</strong></div>
-            ${t1R.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t1R.RPI).toFixed(4)} (#${t1R.Rank})</strong></div>`:''}
-          </div>
-        </div>
-        <div class="matchup-vs">VS</div>
-        <div class="matchup-card">
-          <h3>${t2}</h3>
-          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t2]||''}</div>
-          <div class="matchup-record ${t2W>t1W?'win':t2W<t1W?'loss':'even'}">${t2W}</div>
-          <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">vs ${t1}</div>
-          <div style="margin-top:12px;font-family:var(--font-display)">
-            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t2S.Wins||0}-${t2S.Losses||0}</strong></div>
-            ${t2R.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t2R.RPI).toFixed(4)} (#${t2R.Rank})</strong></div>`:''}
-          </div>
-        </div>
-      </div>
-      ${h2h.length?`
-      <div class="section-header"><div class="section-title" style="font-size:20px">Head-to-Head Results</div></div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Date</th><th>Season</th><th>Winner</th><th class="num">Score</th><th>Type</th></tr></thead>
-        <tbody>${h2h.map(g=>{
-          const s1=g.Team1===t1?g.Team1Score:g.Team2Score, s2=g.Team1===t2?g.Team1Score:g.Team2Score;
-          return `<tr><td style="color:var(--text3)">${g.Date}</td><td style="font-family:var(--font-display);color:var(--text2)">${g.Season}</td>
-            <td class="team-name" style="color:${g.Winner===t1?'var(--green-light)':'#e88080'}">${g.Winner}</td>
-            <td class="num">${s1}-${s2}</td><td style="color:var(--text3);font-size:12px">${g.GameType||'Game'}</td></tr>`;
-        }).join('')}</tbody>
-      </table></div>`:'<div class="empty">No head-to-head games found</div>'}
-      <div class="two-col" style="margin-top:1.5rem">
-        <div>
-          <div class="section-header"><div class="section-title" style="font-size:18px">${t1} Top Players</div></div>
-          ${t1P.length?`<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
-          <tbody>${t1P.map(p=>`<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-            <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td></tr>`).join('')}</tbody></table>`
-          :'<div class="empty" style="padding:1rem">No stats</div>'}
-        </div>
-        <div>
-          <div class="section-header"><div class="section-title" style="font-size:18px">${t2} Top Players</div></div>
-          ${t2P.length?`<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
-          <tbody>${t2P.map(p=>`<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-            <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td></tr>`).join('')}</tbody></table>`
-          :'<div class="empty" style="padding:1rem">No stats</div>'}
-        </div>
-      </div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
-}
-
-// ============================================================
-// LEADERS
-// ============================================================
-async function renderLeaders() {
-  const el = document.getElementById('leaders-content');
-  el.innerHTML='<div class="loading">Loading</div>';
-  try {
-    const playerStats = await loadData('playerStats');
-    const seasons = getSeasons(playerStats);
-    seasons.unshift('All Time');
-    populateSelect('leaders-season', seasons, seasons[0]);
-    const season = document.getElementById('leaders-season').value||seasons[0];
-    const cls = document.getElementById('leaders-class').value;
-    const stat = document.getElementById('leaders-stat').value;
-    let data = playerStats.filter(r=>r.Name&&r[stat]!==''&&r[stat]!==undefined);
-    if (season!=='All Time') data=data.filter(r=>r.Season===season);
-    if (cls!=='all') data=data.filter(r=>CLS[r.Team]===cls);
-    let leaders;
-    if (season==='All Time'&&['Goals','Assists','Points','GroundBalls','Saves','Takeaways','FaceoffsWon'].includes(stat)){
-      const agg={};
-      data.forEach(r=>{const k=r.Name+'|'+r.Team;if(!agg[k])agg[k]={Name:r.Name,Team:r.Team,val:0};agg[k].val+=parseFloat(r[stat]||0);});
-      leaders=Object.values(agg).sort((a,b)=>b.val-a.val).slice(0,50);
-    } else {
-      const desc=stat!=='GAA';
-      leaders=data.map(r=>({...r,val:parseFloat(r[stat]||0)})).sort((a,b)=>desc?b.val-a.val:a.val-b.val).slice(0,50);
-    }
-    el.innerHTML=`<div class="table-wrap"><table>
-      <thead><tr><th>#</th><th>Player</th><th>Team</th><th>Class</th>${season==='All Time'?'':'<th>Season</th><th>Yr</th>'}<th class="num">${stat}</th></tr></thead>
-      <tbody>${leaders.map((r,i)=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
-        <td class="rank">${i+1}</td><td class="team-name">${r.Name}</td>
-        <td style="color:var(--text2)">${r.Team}</td>
-        <td><span class="badge badge-${(CLS[r.Team]||'').toLowerCase()}">${CLS[r.Team]||''}</span></td>
-        ${season==='All Time'?'':`<td style="color:var(--text3);font-family:var(--font-display)">${r.Season}</td><td style="color:var(--text3)">${r.ClassYear?r.ClassYear.substring(0,2):''}</td>`}
-        <td class="num rpi-val">${typeof r.val==='number'?r.val.toFixed(stat.includes('/')||stat==='GAA'?1:0):r[stat]}</td>
-      </tr>`).join('')}</tbody>
-    </table></div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
-}
-
-// ============================================================
-// HISTORY
-// ============================================================
-async function initHistory() {
-  const teamSeasons = await loadData('teamSeasons');
-  const teams=[...new Set(teamSeasons.map(r=>r.Team))].filter(t=>CLS[t]).sort();
-  populateSelect('history-team', teams, 'Olympus');
-  renderHistory();
-}
-
-async function renderHistory() {
-  const el = document.getElementById('history-content');
-  el.innerHTML='<div class="loading">Loading</div>';
-  try {
-    const [teamSeasons,rpi] = await Promise.all([loadData('teamSeasons'),loadData('rpi')]);
-    const team = document.getElementById('history-team').value;
-    const seasons = teamSeasons.filter(r=>r.Team===team).sort((a,b)=>b.Season.localeCompare(a.Season));
-    const totalW=seasons.reduce((s,r)=>s+parseInt(r.Wins||0),0);
-    const totalL=seasons.reduce((s,r)=>s+parseInt(r.Losses||0),0);
-    const totalGF=seasons.reduce((s,r)=>s+parseInt(r.GoalsFor||0),0);
-    const best=seasons.slice().sort((a,b)=>parseFloat(b.WinPct||0)-parseFloat(a.WinPct||0))[0];
-    el.innerHTML=`
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-val">${totalW}-${totalL}</div><div class="stat-lbl">All-Time Record</div></div>
-        <div class="stat-card"><div class="stat-val">${((totalW/(totalW+totalL||1))*100).toFixed(0)}%</div><div class="stat-lbl">Win Rate</div></div>
-        <div class="stat-card"><div class="stat-val">${seasons.length}</div><div class="stat-lbl">Seasons</div></div>
-        <div class="stat-card"><div class="stat-val">${totalGF}</div><div class="stat-lbl">Goals Scored</div></div>
-        <div class="stat-card"><div class="stat-val">${best?best.Season:'—'}</div><div class="stat-lbl">Best Season</div></div>
-      </div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Season</th><th>Class</th><th class="num">W</th><th class="num">L</th><th class="num">Win%</th><th class="num">GF</th><th class="num">GA</th><th class="num">+/-</th><th class="num">RPI</th><th class="num">Rank</th></tr></thead>
-        <tbody>${seasons.map(s=>{
-          const r=rpi.find(r=>r.Season===s.Season&&r.Team===team);
-          return `<tr>
-            <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
-            <td><span class="badge badge-${s.Classification?.toLowerCase()}">${s.Classification}</span></td>
-            <td class="num" style="color:var(--green-light)">${s.Wins}</td>
-            <td class="num" style="color:#e88080">${s.Losses}</td>
-            <td class="num">${parseFloat(s.WinPct||0).toFixed(3)}</td>
-            <td class="num">${s.GoalsFor}</td><td class="num">${s.GoalsAgainst}</td>
-            <td class="num" style="color:${parseInt(s.GoalDiff||0)>0?'var(--green-light)':parseInt(s.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(s.GoalDiff||0)>0?'+':''}${s.GoalDiff}</td>
-            <td class="num" style="color:var(--gold-light)">${r?parseFloat(r.RPI).toFixed(4):'—'}</td>
-            <td class="num">${r?'#'+r.Rank:'—'}</td>
-          </tr>`;
-        }).join('')}</tbody>
-      </table></div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
-}
-
-loadAll().then(()=>renderOlympus());
-</script>
-</body>
-</html>
-  main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-  .view { display: none; }
-  .view.active { display: block; }
-
-  .loading { display: flex; align-items: center; justify-content: center; height: 300px; color: var(--text3); font-family: var(--font-display); font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase; }
-  .loading::after { content: ''; display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.5rem; }
-  .section-title { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: 0.04em; text-transform: uppercase; }
-  .section-sub { font-family: var(--font-display); font-size: 13px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
-
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
-  .card-title { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 1rem; }
-
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 2rem; }
-  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; text-align: center; }
-  .stat-val { font-family: var(--font-display); font-weight: 900; font-size: 32px; color: var(--green-light); line-height: 1; margin-bottom: 4px; }
-  .stat-lbl { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
-
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  thead th { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  tbody tr { border-bottom: 1px solid rgba(0,130,75,0.08); transition: background 0.1s; }
-  tbody tr:hover { background: var(--surface2); }
-  tbody tr.olympus-row { background: rgba(0,130,75,0.1); }
-  tbody td { padding: 10px 12px; color: var(--text); }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  td.rank { color: var(--text3); font-size: 13px; width: 40px; }
-  td.team-name { font-weight: 600; }
-  td.rpi-val { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--green-light); }
-
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
-  .badge-6a { background: rgba(201,168,76,0.2); color: var(--gold-light); }
-  .badge-5a { background: rgba(0,130,75,0.2); color: var(--green-light); }
-  .badge-4a { background: rgba(100,150,200,0.2); color: #7bb8e8; }
-
-  .controls { display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; }
-  select, input { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 14px; padding: 8px 12px; border-radius: 6px; outline: none; cursor: pointer; }
-  select:focus, input:focus { border-color: var(--green); }
-
-  .btn { background: var(--green); color: white; border: none; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 18px; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
-  .btn:hover { background: var(--green-light); }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-  @media (max-width: 900px) { .two-col, .three-col { grid-template-columns: 1fr; } nav button { font-size: 11px; padding: 6px 8px; } }
-
-  .olympus-hero { background: linear-gradient(135deg, var(--bg2) 0%, var(--surface) 100%); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 2rem; }
-  .olympus-logo { width: 80px; height: 80px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-  .olympus-logo img { width: 100%; height: 100%; object-fit: contain; }
-  .olympus-info h1 { font-family: var(--font-display); font-weight: 900; font-size: 32px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .olympus-info h1 span { color: var(--green-light); }
-  .olympus-meta { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
-  .olympus-meta span { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.06em; color: var(--text2); text-transform: uppercase; }
-  .olympus-meta strong { color: var(--gold-light); }
-
-  .result-w { color: var(--green-light); font-weight: 700; }
-  .result-l { color: #e88080; font-weight: 700; }
-  .result-upcoming { color: var(--green-light); font-size: 13px; }
-
-  /* GAME ROWS */
-  .game-row { cursor: pointer; }
-  .game-row:hover td { background: var(--surface2) !important; }
-  .upcoming-row td { background: rgba(0,130,75,0.04); }
-
-  /* SCOUT PANEL */
-  .scout-row td { padding: 0 !important; }
-  .scout-panel {
-    background: var(--bg3);
-    border-top: 1px solid var(--border);
-    border-bottom: 2px solid var(--green);
-    padding: 1.5rem;
-    animation: slideDown 0.2s ease;
-  }
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-
-  .scout-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem; }
-  .scout-team-name { font-family: var(--font-display); font-weight: 900; font-size: 26px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .scout-meta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .scout-meta span { font-family: var(--font-display); font-size: 13px; color: var(--text2); letter-spacing: 0.06em; text-transform: uppercase; }
-  .scout-meta strong { color: var(--gold-light); }
-
-  .scout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .scout-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  @media (max-width: 700px) { .scout-grid, .scout-grid-3 { grid-template-columns: 1fr; } }
-
-  .scout-section { margin-bottom: 1.25rem; }
-  .scout-section-title { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-light); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
-
-  .scout-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .scout-table td { padding: 5px 8px; border-bottom: 1px solid rgba(0,130,75,0.06); }
-  .scout-table tr:last-child td { border-bottom: none; }
-  .scout-table .sn { color: var(--text3); width: 28px; }
-  .scout-table .sp { font-weight: 600; }
-  .scout-table .sv { text-align: right; font-variant-numeric: tabular-nums; color: var(--green-light); font-weight: 700; }
-  .scout-table .sm { text-align: right; color: var(--text3); font-size: 12px; }
-
-  .common-opp-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 8px; border-bottom: 1px solid rgba(0,130,75,0.06); font-size: 13px; }
-  .common-opp-row:last-child { border-bottom: none; }
-  .w-badge { color: var(--green-light); font-weight: 700; font-size: 12px; }
-  .l-badge { color: #e88080; font-weight: 700; font-size: 12px; }
-
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
-  .tab { background: none; border: none; color: var(--text3); font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
-  .tab:hover { color: var(--text2); }
-  .tab.active { color: var(--green-light); border-bottom-color: var(--green-light); }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  .matchup-teams { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-bottom: 2rem; }
-  .matchup-vs { font-family: var(--font-display); font-weight: 900; font-size: 28px; color: var(--text3); text-align: center; }
-  .matchup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; }
-  .matchup-card h3 { font-family: var(--font-display); font-weight: 800; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
-  .matchup-record { font-family: var(--font-display); font-size: 28px; font-weight: 900; margin: 12px 0 4px; }
-  .matchup-record.win { color: var(--green-light); }
-  .matchup-record.loss { color: #e88080; }
-  .matchup-record.even { color: var(--gold-light); }
-
-  .h2h-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-  .h2h-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
-  .h2h-num { font-family: var(--font-display); font-weight: 900; font-size: 42px; line-height: 1; margin-bottom: 4px; }
-  .h2h-lbl { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
-
-  .empty { text-align: center; padding: 2rem; color: var(--text3); font-family: var(--font-display); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
-  input[type="text"] { width: 240px; }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="logo">Utah <span>Boys Lacrosse</span></div>
-  <nav>
-    <button class="active" onclick="showView('olympus', this)">Olympus</button>
-    <button onclick="showView('standings', this)">Standings</button>
-    <button onclick="showView('rpi', this)">RPI</button>
-    <button onclick="showView('matchup', this)">Matchup</button>
-    <button onclick="showView('leaders', this)">Leaders</button>
-    <button onclick="showView('history', this)">History</button>
-  </nav>
-</header>
-
-<main>
-  <div id="view-olympus" class="view active">
-    <div id="olympus-content"><div class="loading">Loading Olympus</div></div>
-  </div>
-
-  <div id="view-standings" class="view">
-    <div class="section-header"><div class="section-title">Standings</div></div>
-    <div class="controls">
-      <select id="standings-season" onchange="renderStandings()"></select>
-      <select id="standings-class" onchange="renderStandings()">
-        <option value="all">All Classifications</option>
-        <option value="6A">6A</option><option value="5A">5A</option><option value="4A">4A</option>
-      </select>
-    </div>
-    <div id="standings-content"><div class="loading">Loading</div></div>
-  </div>
-
-  <div id="view-rpi" class="view">
-    <div class="section-header"><div class="section-title">RPI Rankings</div><div class="section-sub">UHSAA Formula</div></div>
-    <div class="controls">
-      <select id="rpi-season" onchange="renderRPI()"></select>
-      <select id="rpi-class" onchange="renderRPI()">
-        <option value="all">All Classifications</option>
-        <option value="6A">6A</option><option value="5A">5A</option><option value="4A">4A</option>
-      </select>
-    </div>
-    <div id="rpi-content"><div class="loading">Loading</div></div>
-  </div>
-
-  <div id="view-matchup" class="view">
-    <div class="section-header"><div class="section-title">Matchup Tool</div></div>
-    <div class="controls">
-      <select id="matchup-team1" onchange="renderMatchup()"></select>
-      <span style="color:var(--text3);font-family:var(--font-display);font-weight:700">VS</span>
-      <select id="matchup-team2" onchange="renderMatchup()"></select>
-      <select id="matchup-season" onchange="renderMatchup()"><option value="all">All Time</option></select>
-    </div>
-    <div id="matchup-content"><div class="empty">Select two teams to compare</div></div>
-  </div>
-
-  <div id="view-leaders" class="view">
-    <div class="section-header"><div class="section-title">Stat Leaders</div></div>
-    <div class="controls">
-      <select id="leaders-season" onchange="renderLeaders()"></select>
-      <select id="leaders-class" onchange="renderLeaders()">
-        <option value="all">All Classifications</option>
-        <option value="6A">6A</option><option value="5A">5A</option><option value="4A">4A</option>
-      </select>
-      <select id="leaders-stat" onchange="renderLeaders()">
-        <option value="Goals">Goals</option>
-        <option value="Assists">Assists</option>
-        <option value="Points">Points</option>
-        <option value="G/G">Goals Per Game</option>
-        <option value="A/G">Assists Per Game</option>
-        <option value="GroundBalls">Ground Balls</option>
-        <option value="Takeaways">Takeaways</option>
-        <option value="Saves">Saves</option>
-        <option value="GAA">GAA (lower = better)</option>
-        <option value="FaceoffsWon">Faceoffs Won</option>
-      </select>
-    </div>
-    <div id="leaders-content"><div class="loading">Loading</div></div>
-  </div>
-
-  <div id="view-history" class="view">
-    <div class="section-header"><div class="section-title">Program History</div></div>
-    <div class="controls"><select id="history-team" onchange="renderHistory()"></select></div>
-    <div id="history-content"><div class="loading">Loading</div></div>
-  </div>
-</main>
-
-<script>
-const URLS = {
-  games:       'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=1897266386&single=true&output=csv',
-  playerStats: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=694892484&single=true&output=csv',
-  teamSeasons: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=630467221&single=true&output=csv',
-  rpi:         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYmCTQTeF9qaxek0xyoV50LWTEXaWvaklbllpPCFXuBiGThsHysDMaEo6n0tId7-u2Zy1o1cjrDszF/pub?gid=47758390&single=true&output=csv',
-};
-
-const CLS = {
-  'Alta':'5A','American Fork':'6A','Bear River':'4A','Bingham':'6A','Bonneville':'5A',
-  'Bountiful':'5A','Box Elder':'4A','Brighton':'5A','Cedar Valley':'5A','Clearfield':'5A',
-  'Copper Hills':'6A','Corner Canyon':'6A','Crimson Cliffs':'4A','Davis':'6A','Dixie':'4A',
-  'East':'6A','Farmington':'6A','Fremont':'6A','Green Canyon':'4A','Herriman':'6A',
-  'Highland':'6A','Hillcrest':'6A','Jordan':'6A','Juan Diego Catholic':'4A','Judge Memorial':'4A',
-  'Judge Memorial Catholic':'4A','Layton':'6A','Lehi':'6A','Logan':'4A','Lone Peak':'6A',
-  'Maple Mountain':'4A','Mountain Crest':'4A','Mountain Ridge':'6A','Northridge':'5A',
-  'Olympus':'5A','Orem':'4A','Park City':'5A','Payson':'4A','Pleasant Grove':'6A',
-  'Provo':'4A','Ridgeline':'4A','Riverton':'6A','Roy':'5A','Salem Hills':'4A',
-  'Sky View':'4A','Skyline':'5A','Skyridge':'6A','Snow Canyon':'4A','Spanish Fork':'4A',
-  'Syracuse':'6A','Timpanogos':'4A','Timpview':'4A','Viewmont':'5A','Wasatch':'4A',
-  'Waterford':'4A','Weber':'6A','West':'5A','West Field':'5A','West Jordan':'6A',
-  'Westlake':'6A','Woods Cross':'5A',
-};
-
-const cache = {};
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
-  return lines.slice(1).map(line => {
-    const vals = []; let cur = '', inQ = false;
-    for (let c of line) {
-      if (c === '"') inQ = !inQ;
-      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
-      else cur += c;
-    }
-    vals.push(cur.trim());
-    const obj = {};
-    headers.forEach((h,i) => obj[h] = vals[i]||'');
-    return obj;
-  });
-}
-
-async function loadData(key) {
-  if (cache[key]) return cache[key];
-  const res = await fetch(URLS[key]);
-  cache[key] = parseCSV(await res.text());
-  return cache[key];
-}
-
-async function loadAll() {
-  await Promise.all(Object.keys(URLS).map(loadData));
-}
-
-function showView(name, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  if (btn) btn.classList.add('active');
-  const fns = {olympus:renderOlympus, standings:renderStandings, rpi:renderRPI, matchup:initMatchup, leaders:renderLeaders, history:initHistory};
-  if (fns[name]) fns[name]();
-}
-
-function getSeasons(data) {
-  return [...new Set(data.map(r=>r.Season))].filter(Boolean).sort().reverse();
-}
-
-function populateSelect(id, options, selected) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const cur = el.value || selected;
-  el.innerHTML = options.map(o=>`<option value="${o}" ${o===cur?'selected':''}>${o}</option>`).join('');
-}
-
-// ============================================================
-// OLYMPUS VIEW
-// ============================================================
-async function renderOlympus() {
-  const el = document.getElementById('olympus-content');
-  try {
-    const [games, teamSeasons, rpi, playerStats] = await Promise.all([
-      loadData('games'), loadData('teamSeasons'), loadData('rpi'), loadData('playerStats')
-    ]);
-    const CS = '2025-26';
-
-    const oGames = games.filter(g =>
-      g.Season === CS && (g.Team1==='Olympus'||g.Team2==='Olympus')
-    ).sort((a,b) => a.Date.localeCompare(b.Date)||(b.Team1Score||'').localeCompare(a.Team1Score||''))
-    .filter((g,i,arr) => {
-      const opp = g.Team1==='Olympus'?g.Team2:g.Team1;
-      const key = g.Date+'|'+opp;
-      return arr.findIndex(x=>{const xo=x.Team1==='Olympus'?x.Team2:x.Team1; return x.Date+'|'+xo===key;})===i;
-    });
-
-    const oSeason = teamSeasons.find(r=>r.Season===CS&&r.Team==='Olympus')||{};
-    const oRPI = rpi.find(r=>r.Season===CS&&r.Team==='Olympus')||{};
-    const oPlayers = playerStats.filter(r=>r.Team==='Olympus'&&r.Season===CS)
-      .sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0));
-    const allSeasons = teamSeasons.filter(r=>r.Team==='Olympus');
-    const totalW = allSeasons.reduce((s,r)=>s+parseInt(r.Wins||0),0);
-    const totalL = allSeasons.reduce((s,r)=>s+parseInt(r.Losses||0),0);
-    const played = oGames.filter(g=>g.Winner);
-    const wins = played.filter(g=>g.Winner==='Olympus').length;
-    const losses = played.filter(g=>g.Winner!=='Olympus'&&g.Winner).length;
-
-    el.innerHTML = `
-      <div class="olympus-hero">
-        <div class="olympus-logo">
-          <img src="https://image.maxpreps.io/school-mascot/8/f/e/8fe978ec-f307-4ea5-8691-d09e185561fd.gif?version=635231308800000000&width=1024&height=1024" onerror="this.parentElement.innerHTML='🥍'"/>
-        </div>
-        <div class="olympus-info">
-          <h1>Olympus <span>Titans</span></h1>
-          <div class="olympus-meta">
-            <span>5A Region 6</span>
-            <span>${CS} Record: <strong>${wins}-${losses}</strong></span>
-            ${oRPI.RPI?`<span>RPI Rank: <strong>#${oRPI.Rank}</strong> (${parseFloat(oRPI.RPI).toFixed(4)})</span>`:''}
-            <span>All-Time: <strong>${totalW}-${totalL}</strong></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-val">${wins}-${losses}</div><div class="stat-lbl">${CS} Record</div></div>
-        <div class="stat-card"><div class="stat-val">${oRPI.Rank?'#'+oRPI.Rank:'—'}</div><div class="stat-lbl">5A RPI Rank</div></div>
-        <div class="stat-card"><div class="stat-val">${oSeason.GoalsFor||'—'}</div><div class="stat-lbl">Goals For</div></div>
-        <div class="stat-card"><div class="stat-val">${oSeason.GoalsAgainst||'—'}</div><div class="stat-lbl">Goals Against</div></div>
-        <div class="stat-card"><div class="stat-val">${totalW}-${totalL}</div><div class="stat-lbl">All-Time Record</div></div>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <div class="section-header">
-            <div class="section-title" style="font-size:20px">${CS} Schedule</div>
-            <div class="section-sub">Click any game to scout</div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Date</th><th>Opponent</th><th>H2H</th><th>Result</th><th>Score</th></tr></thead>
-              <tbody>
-                ${oGames.map((g,idx)=>{
-                  const isHome = g.Team1==='Olympus';
-                  const opp = isHome?g.Team2:g.Team1;
-                  const oScore = isHome?g.Team2Score:g.Team1Score;
-                  const myScore = isHome?g.Team1Score:g.Team2Score;
-                  const won = g.Winner==='Olympus';
-                  const didPlay = g.Winner!=='';
-                  const result = !didPlay?'—':won?'W':'L';
-                  const score = didPlay&&myScore!==''?`${myScore}-${oScore}`:'Scout ›';
-                  const h2h = games.filter(x=>((x.Team1==='Olympus'&&x.Team2===opp)||(x.Team2==='Olympus'&&x.Team1===opp))&&x.Winner);
-                  const hw = h2h.filter(x=>x.Winner==='Olympus').length;
-                  const hl = h2h.filter(x=>x.Winner!=='Olympus').length;
-                  const oppSafe = opp.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-                  return `<tr class="game-row ${didPlay?'played-row':'upcoming-row'}" onclick="toggleScout('scout-${idx}','${oppSafe}',this)">
-                    <td style="color:var(--text3);font-size:13px">${g.Date?g.Date.substring(5):''}</td>
-                    <td class="team-name">${opp}${!isHome?' <span style="color:var(--text3);font-size:11px">@</span>':''}</td>
-                    <td style="font-size:12px;color:var(--text3)">${h2h.length?hw+'-'+hl:'—'}</td>
-                    <td class="${didPlay?(won?'result-w':'result-l'):'result-upcoming'}">${result}</td>
-                    <td style="font-variant-numeric:tabular-nums;color:${!didPlay?'var(--green-light)':'var(--text)'}">${score}</td>
-                  </tr>
-                  <tr id="scout-${idx}" class="scout-row" style="display:none">
-                    <td colspan="5" style="padding:0">
-                      <div class="scout-panel" id="panel-${idx}">
-                        <div class="loading" style="height:100px">Loading scouting report</div>
-                      </div>
-                    </td>
-                  </tr>`;
-                }).join('')}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div>
-          <div class="section-header"><div class="section-title" style="font-size:20px">Roster Stats</div></div>
-          ${oPlayers.length?`
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>#</th><th>Player</th><th>Yr</th><th class="num">GP</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th><th class="num">GB</th><th class="num">TO</th></tr></thead>
-              <tbody>
-                ${oPlayers.map(p=>`<tr>
-                  <td style="color:var(--text3)">${p.Jersey||''}</td>
-                  <td class="team-name">${p.Name}</td>
-                  <td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-                  <td class="num">${p.GP||''}</td>
-                  <td class="num" style="color:var(--green-light)">${p.Goals||''}</td>
-                  <td class="num">${p.Assists||''}</td>
-                  <td class="num">${p.Points||''}</td>
-                  <td class="num">${p.GroundBalls||''}</td>
-                  <td class="num">${p.Turnovers||''}</td>
-                </tr>`).join('')}
-              </tbody>
-            </table>
-          </div>` : '<div class="empty">No player stats yet</div>'}
-
-          <div style="margin-top:1.5rem">
-            <div class="section-header"><div class="section-title" style="font-size:20px">Season History</div></div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Season</th><th>W</th><th>L</th><th class="num">GF</th><th class="num">GA</th><th class="num">RPI Rank</th></tr></thead>
-                <tbody>
-                  ${allSeasons.sort((a,b)=>b.Season.localeCompare(a.Season)).map(s=>{
-                    const r = rpi.find(r=>r.Season===s.Season&&r.Team==='Olympus');
-                    return `<tr>
-                      <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
-                      <td style="color:var(--green-light)">${s.Wins}</td>
-                      <td style="color:#e88080">${s.Losses}</td>
-                      <td class="num">${s.GoalsFor}</td>
-                      <td class="num">${s.GoalsAgainst}</td>
-                      <td class="num" style="color:var(--gold-light)">${r?'#'+r.Rank:'—'}</td>
-                    </tr>`;
-                  }).join('')}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  } catch(e) {
-    el.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
-  }
-}
-
-// ============================================================
-// SCOUTING REPORT
-// ============================================================
-const openScouts = new Set();
-
-async function toggleScout(id, opp, row) {
-  const scoutRow = document.getElementById(id);
-  const panel = document.getElementById('panel-'+id.replace('scout-',''));
-  if (!scoutRow) return;
-
-  if (scoutRow.style.display !== 'none') {
-    scoutRow.style.display = 'none';
-    openScouts.delete(id);
-    return;
-  }
-
-  scoutRow.style.display = '';
-  openScouts.add(id);
-
-  const [games, playerStats, teamSeasons, rpi] = await Promise.all([
-    loadData('games'), loadData('playerStats'), loadData('teamSeasons'), loadData('rpi')
-  ]);
-
-  const CS = '2025-26';
-
-  // Opponent current season record
-  const oppSeason = teamSeasons.find(r=>r.Season===CS&&r.Team===opp)||{};
-  const oppRPI = rpi.find(r=>r.Season===CS&&r.Team===opp)||{};
-  const cls = CLS[opp]||'';
-
-  // All-time H2H
-  const h2h = games.filter(g=>((g.Team1==='Olympus'&&g.Team2===opp)||(g.Team2==='Olympus'&&g.Team1===opp))&&g.Winner)
-    .sort((a,b)=>b.Date.localeCompare(a.Date));
-  const h2hW = h2h.filter(g=>g.Winner==='Olympus').length;
-  const h2hL = h2h.filter(g=>g.Winner!=='Olympus').length;
-
-  // Normalize name — Games uses 'Judge Memorial Catholic', PlayerStats uses 'Judge Memorial'
-  const oppNorm = opp === 'Judge Memorial Catholic' ? 'Judge Memorial' : opp;
-
-  // Opponent players current season
-  const oppPlayers = playerStats.filter(r=>r.Team===oppNorm&&r.Season===CS);
-
-  // Top scorers
-  const scorers = oppPlayers.filter(p=>parseFloat(p.Goals||0)>0||parseFloat(p.Assists||0)>0)
-    .sort((a,b)=>parseFloat(b.Points||0)-parseFloat(a.Points||0)).slice(0,6);
-
-  // Goalies — sort by saves, show GAA and SV% when available
-  const goalies = oppPlayers.filter(p=>parseFloat(p.Saves||0)>0)
-    .sort((a,b)=>parseFloat(b.Saves||0)-parseFloat(a.Saves||0)).slice(0,3);
-
-  // Faceoffs — FaceoffsWon stores FO% from leaders data
-  const faceoffs = oppPlayers.filter(p=>p.FaceoffsWon!==''&&p.FaceoffsWon!==undefined&&parseFloat(p.FaceoffsWon||0)>0)
-    .sort((a,b)=>parseFloat(b.FaceoffsWon||0)-parseFloat(a.FaceoffsWon||0)).slice(0,5);
-
-  // GB leaders (top 5) and TA leaders (top 4) separately
-  const gbLeaders = oppPlayers.filter(p=>parseFloat(p.GroundBalls||0)>0)
-    .sort((a,b)=>parseFloat(b.GroundBalls||0)-parseFloat(a.GroundBalls||0)).slice(0,5);
-  const taLeaders = oppPlayers.filter(p=>parseFloat(p.Takeaways||0)>0)
-    .sort((a,b)=>parseFloat(b.Takeaways||0)-parseFloat(a.Takeaways||0)).slice(0,4);
-
-  // Common opponents this season
-  const olympusOpps = new Set(games.filter(g=>g.Season===CS&&(g.Team1==='Olympus'||g.Team2==='Olympus')&&g.Winner)
-    .map(g=>g.Team1==='Olympus'?g.Team2:g.Team1));
-  const oppOpps = games.filter(g=>g.Season===CS&&(g.Team1===opp||g.Team2===opp)&&g.Winner)
-    .map(g=>g.Team1===opp?g.Team2:g.Team1);
-  const common = [...new Set(oppOpps.filter(t=>olympusOpps.has(t)&&t!=='Olympus'&&t!==opp))];
-
-  const commonRows = common.map(t=>{
-    const oGame = games.find(g=>g.Season===CS&&((g.Team1==='Olympus'&&g.Team2===t)||(g.Team2==='Olympus'&&g.Team1===t))&&g.Winner);
-    const oppGame = games.find(g=>g.Season===CS&&((g.Team1===opp&&g.Team2===t)||(g.Team2===opp&&g.Team1===t))&&g.Winner);
-    const oRes = oGame?oGame.Winner==='Olympus'?'W':'L':'—';
-    const oppRes = oppGame?oppGame.Winner===opp?'W':'L':'—';
-    const oScore = oGame?(oGame.Team1==='Olympus'?`${oGame.Team1Score}-${oGame.Team2Score}`:`${oGame.Team2Score}-${oGame.Team1Score}`):'';
-    const oppScore = oppGame?(oppGame.Team1===opp?`${oppGame.Team1Score}-${oppGame.Team2Score}`:`${oppGame.Team2Score}-${oppGame.Team1Score}`):'';
-    return {t, oRes, oScore, oppRes, oppScore};
-  });
-
-  panel.innerHTML = `
-    <div class="scout-header">
-      <div>
-        <div class="scout-team-name">${opp}</div>
-        <div class="scout-meta">
-          ${cls?`<span><span class="badge badge-${cls.toLowerCase()}">${cls}</span></span>`:''}
-          <span>${CS} Record: <strong>${oppSeason.Wins||0}-${oppSeason.Losses||0}</strong></span>
-          ${oppRPI.RPI?`<span>RPI: <strong>#${oppRPI.Rank}</strong> (${parseFloat(oppRPI.RPI).toFixed(4)})</span>`:''}
-          <span>GF: <strong>${oppSeason.GoalsFor||'—'}</strong> GA: <strong>${oppSeason.GoalsAgainst||'—'}</strong></span>
-        </div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-family:var(--font-display);font-size:13px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase">All-Time H2H</div>
-        <div style="font-family:var(--font-display);font-size:28px;font-weight:900;color:${h2hW>h2hL?'var(--green-light)':h2hW<h2hL?'#e88080':'var(--gold-light)'}">\${h2hW>h2hL?'Oly leads ':h2hW<h2hL?oppNorm.split(' ')[0]+' leads ':'Tied '}\${h2hW}-\${h2hL}</div>
-      </div>
-    </div>
-
-    <div class="scout-grid">
-      <div>
-        <div class="scout-section">
-          <div class="scout-section-title">Top Scorers — ${CS}</div>
-          ${scorers.length?`<table class="scout-table">
+          ${scorers.length ? `<table class="scout-table">
             <tr><td class="sn"></td><td><b>Player</b></td><td class="sm">Yr</td><td class="sv">G</td><td class="sv">A</td><td class="sv">Pts</td></tr>
-            ${scorers.map((p,i)=>`<tr>
-              <td class="sn">${i+1}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-              <td class="sv">${p.Goals||0}</td>
-              <td class="sv">${p.Assists||0}</td>
-              <td class="sv">${p.Points||0}</td>
+            ${scorers.map((p, i) => `<tr>
+              <td class="sn">${i + 1}</td><td class="sp">${p.Name}</td>
+              <td class="sm">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+              <td class="sv">${p.Goals || 0}</td><td class="sv">${p.Assists || 0}</td><td class="sv">${p.Points || 0}</td>
             </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats available</div>'}
+          </table>` : '<div class="empty" style="padding:0.5rem;font-size:12px">No stats available</div>'}
         </div>
-
         <div class="scout-section">
           <div class="scout-section-title">Goaltending — ${CS}</div>
-          ${goalies.length?`<table class="scout-table">
+          ${goalies.length ? `<table class="scout-table">
             <tr><td class="sn"></td><td><b>Player</b></td><td class="sm">Yr</td><td class="sv">Saves</td><td class="sv">GAA</td><td class="sv">SV%</td></tr>
-            ${goalies.map((p,i)=>`<tr>
-              <td class="sn">${i+1}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-              <td class="sv">${p.Saves||0}</td>
-              <td class="sv">${p.GAA||'—'}</td>
-              <td class="sv">${p['SV%']?parseFloat(p['SV%']).toFixed(3):'—'}</td>
+            ${goalies.map((p, i) => `<tr>
+              <td class="sn">${i + 1}</td><td class="sp">${p.Name}</td>
+              <td class="sm">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+              <td class="sv">${p.Saves || 0}</td>
+              <td class="sv">${p.GAA || '—'}</td>
+              <td class="sv">${p['SV%'] ? parseFloat(p['SV%']).toFixed(3) : '—'}</td>
             </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No goalie stats</div>'}
+          </table>` : '<div class="empty" style="padding:0.5rem;font-size:12px">No goalie stats</div>'}
         </div>
       </div>
-
       <div>
         <div class="scout-section">
           <div class="scout-section-title">Faceoffs — ${CS}</div>
-          ${faceoffs.length?`<table class="scout-table">
+          ${faceoffs.length ? `<table class="scout-table">
             <tr><td class="sn"></td><td><b>Player</b></td><td class="sm">Yr</td><td class="sv">FO%</td></tr>
-            ${faceoffs.map((p,i)=>`<tr>
-              <td class="sn">${i+1}</td>
-              <td class="sp">${p.Name}</td>
-              <td class="sm">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-              <td class="sv">${parseFloat(p.FaceoffsWon||0).toFixed(3)}</td>
+            ${faceoffs.map((p, i) => `<tr>
+              <td class="sn">${i + 1}</td><td class="sp">${p.Name}</td>
+              <td class="sm">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+              <td class="sv">${parseFloat(p.FaceoffsWon || 0).toFixed(3)}</td>
             </tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No faceoff stats</div>'}
+          </table>` : '<div class="empty" style="padding:0.5rem;font-size:12px">No faceoff stats</div>'}
         </div>
-
         <div class="scout-section">
           <div class="scout-section-title">Ground Balls — ${CS}</div>
-          ${gbLeaders.length?`<table class="scout-table">
+          ${gbLeaders.length ? `<table class="scout-table">
             <tr><td class="sn"></td><td><b>Player</b></td><td class="sv">GB</td></tr>
-            ${gbLeaders.map((p,i)=>`<tr><td class="sn">${i+1}</td><td class="sp">${p.Name}</td><td class="sv">${p.GroundBalls}</td></tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
+            ${gbLeaders.map((p, i) => `<tr><td class="sn">${i + 1}</td><td class="sp">${p.Name}</td><td class="sv">${p.GroundBalls}</td></tr>`).join('')}
+          </table>` : '<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
         </div>
         <div class="scout-section">
           <div class="scout-section-title">Takeaways — ${CS}</div>
-          ${taLeaders.length?`<table class="scout-table">
+          ${taLeaders.length ? `<table class="scout-table">
             <tr><td class="sn"></td><td><b>Player</b></td><td class="sv">TA</td></tr>
-            ${taLeaders.map((p,i)=>`<tr><td class="sn">${i+1}</td><td class="sp">${p.Name}</td><td class="sv">${p.Takeaways}</td></tr>`).join('')}
-          </table>`:'<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
+            ${taLeaders.map((p, i) => `<tr><td class="sn">${i + 1}</td><td class="sp">${p.Name}</td><td class="sv">${p.Takeaways}</td></tr>`).join('')}
+          </table>` : '<div class="empty" style="padding:0.5rem;font-size:12px">No stats</div>'}
         </div>
       </div>
     </div>
 
-    ${commonRows.length?`
+    ${commonRows.length ? `
     <div class="scout-section">
       <div class="scout-section-title">Common Opponents — ${CS}</div>
       <table class="scout-table">
         <tr><td><b>Opponent</b></td><td class="sv">Olympus</td><td class="sm">Score</td><td class="sv">${opp.split(' ')[0]}</td><td class="sm">Score</td></tr>
-        ${commonRows.map(r=>`<tr>
+        ${commonRows.map(r => `<tr>
           <td class="sp">${r.t}</td>
-          <td class="sv"><span class="${r.oRes==='W'?'w-badge':'l-badge'}">${r.oRes}</span></td>
+          <td class="sv"><span class="${r.oRes === 'W' ? 'w-badge' : 'l-badge'}">${r.oRes}</span></td>
           <td class="sm">${r.oScore}</td>
-          <td class="sv"><span class="${r.oppRes==='W'?'w-badge':'l-badge'}">${r.oppRes}</span></td>
+          <td class="sv"><span class="${r.oppRes === 'W' ? 'w-badge' : 'l-badge'}">${r.oppRes}</span></td>
           <td class="sm">${r.oppScore}</td>
         </tr>`).join('')}
       </table>
-    </div>`:''}
+    </div>` : ''}
 
-    ${h2h.length?`
+    ${h2h.length ? `
     <div class="scout-section">
       <div class="scout-section-title">All-Time Head to Head</div>
       <table class="scout-table">
         <tr><td><b>Date</b></td><td><b>Season</b></td><td class="sv">Winner</td><td class="sm">Score</td></tr>
-        ${h2h.slice(0,8).map(g=>{
-          const myScore = g.Team1==='Olympus'?g.Team1Score:g.Team2Score;
-          const oppScore = g.Team1==='Olympus'?g.Team2Score:g.Team1Score;
+        ${h2h.slice(0, 8).map(g => {
+          const myScore = g.Team1 === 'Olympus' ? g.Team1Score : g.Team2Score;
+          const oppScore = g.Team1 === 'Olympus' ? g.Team2Score : g.Team1Score;
           return `<tr>
-            <td class="sm">${g.Date}</td>
-            <td class="sm">${g.Season}</td>
-            <td class="sv"><span class="${g.Winner==='Olympus'?'w-badge':'l-badge'}">${g.Winner==='Olympus'?'OLY':'OPP'}</span></td>
+            <td class="sm">${g.Date}</td><td class="sm">${g.Season}</td>
+            <td class="sv"><span class="${g.Winner === 'Olympus' ? 'w-badge' : 'l-badge'}">${g.Winner === 'Olympus' ? 'OLY' : 'OPP'}</span></td>
             <td class="sm">${myScore}-${oppScore}</td>
           </tr>`;
         }).join('')}
       </table>
-    </div>`:''}
+    </div>` : ''}
   `;
 }
 
@@ -1551,59 +762,68 @@ async function renderStandings() {
     const teamSeasons = await loadData('teamSeasons');
     const seasons = getSeasons(teamSeasons);
     populateSelect('standings-season', seasons, seasons[0]);
-    const season = document.getElementById('standings-season').value||seasons[0];
+    const season = document.getElementById('standings-season').value || seasons[0];
     const cls = document.getElementById('standings-class').value;
-    let data = teamSeasons.filter(r=>r.Season===season);
-    if (cls!=='all') data = data.filter(r=>r.Classification===cls);
-    data = data.sort((a,b)=>parseFloat(b.WinPct||0)-parseFloat(a.WinPct||0)||parseInt(b.Wins||0)-parseInt(a.Wins||0));
+    let data = teamSeasons.filter(r => r.Season === season);
+    if (cls !== 'all') data = data.filter(r => r.Classification === cls);
+    data = data.sort((a, b) => parseFloat(b.WinPct || 0) - parseFloat(a.WinPct || 0) || parseInt(b.Wins || 0) - parseInt(a.Wins || 0));
     el.innerHTML = `<div class="table-wrap"><table>
       <thead><tr><th>#</th><th>Team</th><th>Class</th><th class="num">W</th><th class="num">L</th><th class="num">Win%</th><th class="num">GF</th><th class="num">GA</th><th class="num">+/-</th></tr></thead>
-      <tbody>${data.map((r,i)=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
-        <td class="rank">${i+1}</td><td class="team-name">${r.Team}</td>
+      <tbody>${data.map((r, i) => `<tr class="${r.Team === 'Olympus' ? 'olympus-row' : ''}">
+        <td class="rank">${i + 1}</td><td class="team-name">${r.Team}</td>
         <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
         <td class="num" style="color:var(--green-light)">${r.Wins}</td>
         <td class="num" style="color:#e88080">${r.Losses}</td>
-        <td class="num">${parseFloat(r.WinPct||0).toFixed(3)}</td>
+        <td class="num">${parseFloat(r.WinPct || 0).toFixed(3)}</td>
         <td class="num">${r.GoalsFor}</td><td class="num">${r.GoalsAgainst}</td>
-        <td class="num" style="color:${parseInt(r.GoalDiff||0)>0?'var(--green-light)':parseInt(r.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(r.GoalDiff||0)>0?'+':''}${r.GoalDiff}</td>
+        <td class="num" style="color:${parseInt(r.GoalDiff || 0) > 0 ? 'var(--green-light)' : parseInt(r.GoalDiff || 0) < 0 ? '#e88080' : 'var(--text2)'}">${parseInt(r.GoalDiff || 0) > 0 ? '+' : ''}${r.GoalDiff}</td>
       </tr>`).join('')}</tbody>
     </table></div>`;
-  } catch(e) { el.innerHTML=`<div class="empty">Error: ${e.message}</div>`; }
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
 // ============================================================
-// RPI
+// RPI (now computed live from games data)
 // ============================================================
 async function renderRPI() {
   const el = document.getElementById('rpi-content');
   el.innerHTML = '<div class="loading">Loading</div>';
   try {
-    const rpiData = await loadData('rpi');
-    const seasons = getSeasons(rpiData);
+    const games = await loadData('games');
+    const seasons = getSeasons(games);
     populateSelect('rpi-season', seasons, seasons[0]);
-    const season = document.getElementById('rpi-season').value||seasons[0];
+    const season = document.getElementById('rpi-season').value || seasons[0];
     const cls = document.getElementById('rpi-class').value;
-    let data = rpiData.filter(r=>r.Season===season);
-    if (cls!=='all') data = data.filter(r=>r.Classification===cls);
-    data = data.sort((a,b)=>{
-      if (a.Classification!==b.Classification){const o={'6A':0,'5A':1,'4A':2};return (o[a.Classification]||9)-(o[b.Classification]||9);}
-      return parseInt(a.Rank||99)-parseInt(b.Rank||99);
+
+    let data = computeRPI(games, season);
+    if (cls !== 'all') data = data.filter(r => r.Classification === cls);
+
+    // Sort: by classification order then rank within class
+    data = data.slice().sort((a, b) => {
+      if (a.Classification !== b.Classification) {
+        const o = { '6A': 0, '5A': 1, '4A': 2 };
+        return (o[a.Classification] || 9) - (o[b.Classification] || 9);
+      }
+      return a.Rank - b.Rank;
     });
+
     el.innerHTML = `<div class="table-wrap"><table>
       <thead><tr><th>Rank</th><th>Team</th><th>Class</th><th class="num">RPI</th><th class="num">MWP</th><th class="num">OWP</th><th class="num">OOWP</th><th class="num">W</th><th class="num">L</th></tr></thead>
-      <tbody>${data.map(r=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
+      <tbody>${data.map(r => `<tr class="${r.Team === 'Olympus' ? 'olympus-row' : ''}">
         <td class="rank">#${r.Rank}</td><td class="team-name">${r.Team}</td>
-        <td><span class="badge badge-${r.Classification?.toLowerCase()}">${r.Classification}</span></td>
-        <td class="num rpi-val">${parseFloat(r.RPI||0).toFixed(4)}</td>
-        <td class="num">${parseFloat(r.MWP||0).toFixed(3)}</td>
-        <td class="num">${parseFloat(r.OWP||0).toFixed(3)}</td>
-        <td class="num">${parseFloat(r.OOWP||0).toFixed(3)}</td>
+        <td><span class="badge badge-${r.Classification.toLowerCase()}">${r.Classification}</span></td>
+        <td class="num rpi-val">${r.RPI.toFixed(4)}</td>
+        <td class="num">${r.MWP.toFixed(3)}</td>
+        <td class="num">${r.OWP.toFixed(3)}</td>
+        <td class="num">${r.OOWP.toFixed(3)}</td>
         <td class="num" style="color:var(--green-light)">${r.Wins}</td>
         <td class="num" style="color:#e88080">${r.Losses}</td>
       </tr>`).join('')}</tbody>
     </table></div>
-    <div style="margin-top:1rem;font-size:12px;color:var(--text3);font-family:var(--font-display);letter-spacing:0.06em">RPI = (45% × MWP) + (45% × OWP) + (10% × OOWP) — UHSAA Formula</div>`;
-  } catch(e) { el.innerHTML=`<div class="empty">Error: ${e.message}</div>`; }
+    <div style="margin-top:1rem;font-size:12px;color:var(--text3);font-family:var(--font-display);letter-spacing:0.06em">
+      RPI = (45% × MWP) + (45% × OWP) + (10% × OOWP) — UHSAA Formula · Ranked within classification · All-class games count toward OWP/OOWP
+    </div>`;
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
 // ============================================================
@@ -1611,12 +831,12 @@ async function renderRPI() {
 // ============================================================
 async function initMatchup() {
   const games = await loadData('games');
-  const teams = [...new Set([...games.map(g=>g.Team1),...games.map(g=>g.Team2)])].filter(t=>CLS[t]).sort();
+  const teams = [...new Set([...games.map(g => g.Team1), ...games.map(g => g.Team2)])].filter(t => CLS[t]).sort();
   populateSelect('matchup-team1', teams, 'Olympus');
   populateSelect('matchup-team2', teams, 'Park City');
   const seasons = getSeasons(games);
   const sel = document.getElementById('matchup-season');
-  sel.innerHTML = `<option value="all">All Time</option>`+seasons.map(s=>`<option value="${s}">${s}</option>`).join('');
+  sel.innerHTML = `<option value="all">All Time</option>` + seasons.map(s => `<option value="${s}">${s}</option>`).join('');
   renderMatchup();
 }
 
@@ -1624,75 +844,75 @@ async function renderMatchup() {
   const el = document.getElementById('matchup-content');
   const t1 = document.getElementById('matchup-team1')?.value;
   const t2 = document.getElementById('matchup-team2')?.value;
-  if (!t1||!t2||t1===t2){el.innerHTML='<div class="empty">Select two different teams</div>';return;}
-  el.innerHTML='<div class="loading">Loading</div>';
+  if (!t1 || !t2 || t1 === t2) { el.innerHTML = '<div class="empty">Select two different teams</div>'; return; }
+  el.innerHTML = '<div class="loading">Loading</div>';
   try {
-    const [games,teamSeasons,rpi,playerStats] = await Promise.all([loadData('games'),loadData('teamSeasons'),loadData('rpi'),loadData('playerStats')]);
+    const [games, teamSeasons, playerStats] = await Promise.all([loadData('games'), loadData('teamSeasons'), loadData('playerStats')]);
     const season = document.getElementById('matchup-season').value;
     const CS = '2025-26';
-    const h2h = games.filter(g=>{
-      const match=(g.Team1===t1&&g.Team2===t2)||(g.Team1===t2&&g.Team2===t1);
-      return match&&(season==='all'||g.Season===season)&&g.Winner;
-    }).sort((a,b)=>b.Date.localeCompare(a.Date));
-    const t1W=h2h.filter(g=>g.Winner===t1).length, t2W=h2h.filter(g=>g.Winner===t2).length;
-    const t1S=teamSeasons.find(r=>r.Season===CS&&r.Team===t1)||{};
-    const t2S=teamSeasons.find(r=>r.Season===CS&&r.Team===t2)||{};
-    const t1R=rpi.find(r=>r.Season===CS&&r.Team===t1)||{};
-    const t2R=rpi.find(r=>r.Season===CS&&r.Team===t2)||{};
-    const t1P=playerStats.filter(r=>r.Team===t1&&r.Season===CS).sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
-    const t2P=playerStats.filter(r=>r.Team===t2&&r.Season===CS).sort((a,b)=>parseFloat(b.Goals||0)-parseFloat(a.Goals||0)).slice(0,5);
-    el.innerHTML=`
+    const h2h = games.filter(g => {
+      const match = (g.Team1 === t1 && g.Team2 === t2) || (g.Team1 === t2 && g.Team2 === t1);
+      return match && (season === 'all' || g.Season === season) && g.Winner;
+    }).sort((a, b) => b.Date.localeCompare(a.Date));
+    const t1W = h2h.filter(g => g.Winner === t1).length, t2W = h2h.filter(g => g.Winner === t2).length;
+    const t1S = teamSeasons.find(r => r.Season === CS && r.Team === t1) || {};
+    const t2S = teamSeasons.find(r => r.Season === CS && r.Team === t2) || {};
+    const t1R = getTeamRPI(games, t1, CS);
+    const t2R = getTeamRPI(games, t2, CS);
+    const t1P = playerStats.filter(r => r.Team === t1 && r.Season === CS).sort((a, b) => parseFloat(b.Goals || 0) - parseFloat(a.Goals || 0)).slice(0, 5);
+    const t2P = playerStats.filter(r => r.Team === t2 && r.Season === CS).sort((a, b) => parseFloat(b.Goals || 0) - parseFloat(a.Goals || 0)).slice(0, 5);
+    el.innerHTML = `
       <div class="matchup-teams">
         <div class="matchup-card">
           <h3>${t1}</h3>
-          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t1]||''}</div>
-          <div class="matchup-record ${t1W>t2W?'win':t1W<t2W?'loss':'even'}">${t1W}</div>
+          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t1] || ''}</div>
+          <div class="matchup-record ${t1W > t2W ? 'win' : t1W < t2W ? 'loss' : 'even'}">${t1W}</div>
           <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">vs ${t2}</div>
           <div style="margin-top:12px;font-family:var(--font-display)">
-            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t1S.Wins||0}-${t1S.Losses||0}</strong></div>
-            ${t1R.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t1R.RPI).toFixed(4)} (#${t1R.Rank})</strong></div>`:''}
+            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t1S.Wins || 0}-${t1S.Losses || 0}</strong></div>
+            ${t1R ? `<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${t1R.RPI.toFixed(4)} (#${t1R.Rank})</strong></div>` : ''}
           </div>
         </div>
         <div class="matchup-vs">VS</div>
         <div class="matchup-card">
           <h3>${t2}</h3>
-          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t2]||''}</div>
-          <div class="matchup-record ${t2W>t1W?'win':t2W<t1W?'loss':'even'}">${t2W}</div>
+          <div style="color:var(--text3);font-size:13px;font-family:var(--font-display)">${CLS[t2] || ''}</div>
+          <div class="matchup-record ${t2W > t1W ? 'win' : t2W < t1W ? 'loss' : 'even'}">${t2W}</div>
           <div style="color:var(--text3);font-size:12px;font-family:var(--font-display);letter-spacing:0.08em;text-transform:uppercase">vs ${t1}</div>
           <div style="margin-top:12px;font-family:var(--font-display)">
-            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t2S.Wins||0}-${t2S.Losses||0}</strong></div>
-            ${t2R.RPI?`<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${parseFloat(t2R.RPI).toFixed(4)} (#${t2R.Rank})</strong></div>`:''}
+            <div style="font-size:13px;color:var(--text2)">${CS}: <strong style="color:var(--text)">${t2S.Wins || 0}-${t2S.Losses || 0}</strong></div>
+            ${t2R ? `<div style="font-size:13px;color:var(--text2)">RPI: <strong style="color:var(--gold-light)">${t2R.RPI.toFixed(4)} (#${t2R.Rank})</strong></div>` : ''}
           </div>
         </div>
       </div>
-      ${h2h.length?`
+      ${h2h.length ? `
       <div class="section-header"><div class="section-title" style="font-size:20px">Head-to-Head Results</div></div>
       <div class="table-wrap"><table>
         <thead><tr><th>Date</th><th>Season</th><th>Winner</th><th class="num">Score</th><th>Type</th></tr></thead>
-        <tbody>${h2h.map(g=>{
-          const s1=g.Team1===t1?g.Team1Score:g.Team2Score, s2=g.Team1===t2?g.Team1Score:g.Team2Score;
+        <tbody>${h2h.map(g => {
+          const s1 = g.Team1 === t1 ? g.Team1Score : g.Team2Score, s2 = g.Team1 === t2 ? g.Team1Score : g.Team2Score;
           return `<tr><td style="color:var(--text3)">${g.Date}</td><td style="font-family:var(--font-display);color:var(--text2)">${g.Season}</td>
-            <td class="team-name" style="color:${g.Winner===t1?'var(--green-light)':'#e88080'}">${g.Winner}</td>
-            <td class="num">${s1}-${s2}</td><td style="color:var(--text3);font-size:12px">${g.GameType||'Game'}</td></tr>`;
+            <td class="team-name" style="color:${g.Winner === t1 ? 'var(--green-light)' : '#e88080'}">${g.Winner}</td>
+            <td class="num">${s1}-${s2}</td><td style="color:var(--text3);font-size:12px">${g.GameType || 'Game'}</td></tr>`;
         }).join('')}</tbody>
-      </table></div>`:'<div class="empty">No head-to-head games found</div>'}
+      </table></div>` : '<div class="empty">No head-to-head games found</div>'}
       <div class="two-col" style="margin-top:1.5rem">
         <div>
           <div class="section-header"><div class="section-title" style="font-size:18px">${t1} Top Players</div></div>
-          ${t1P.length?`<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
-          <tbody>${t1P.map(p=>`<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-            <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td></tr>`).join('')}</tbody></table>`
-          :'<div class="empty" style="padding:1rem">No stats</div>'}
+          ${t1P.length ? `<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
+          <tbody>${t1P.map(p => `<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+            <td class="num">${p.Goals || ''}</td><td class="num">${p.Assists || ''}</td><td class="num">${p.Points || ''}</td></tr>`).join('')}</tbody></table>`
+          : '<div class="empty" style="padding:1rem">No stats</div>'}
         </div>
         <div>
           <div class="section-header"><div class="section-title" style="font-size:18px">${t2} Top Players</div></div>
-          ${t2P.length?`<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
-          <tbody>${t2P.map(p=>`<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear?p.ClassYear.substring(0,2):''}</td>
-            <td class="num">${p.Goals||''}</td><td class="num">${p.Assists||''}</td><td class="num">${p.Points||''}</td></tr>`).join('')}</tbody></table>`
-          :'<div class="empty" style="padding:1rem">No stats</div>'}
+          ${t2P.length ? `<table><thead><tr><th>Player</th><th>Yr</th><th class="num">G</th><th class="num">A</th><th class="num">Pts</th></tr></thead>
+          <tbody>${t2P.map(p => `<tr><td class="team-name">${p.Name}</td><td style="color:var(--text3)">${p.ClassYear ? p.ClassYear.substring(0, 2) : ''}</td>
+            <td class="num">${p.Goals || ''}</td><td class="num">${p.Assists || ''}</td><td class="num">${p.Points || ''}</td></tr>`).join('')}</tbody></table>`
+          : '<div class="empty" style="padding:1rem">No stats</div>'}
         </div>
       </div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
 // ============================================================
@@ -1700,38 +920,38 @@ async function renderMatchup() {
 // ============================================================
 async function renderLeaders() {
   const el = document.getElementById('leaders-content');
-  el.innerHTML='<div class="loading">Loading</div>';
+  el.innerHTML = '<div class="loading">Loading</div>';
   try {
     const playerStats = await loadData('playerStats');
     const seasons = getSeasons(playerStats);
     seasons.unshift('All Time');
     populateSelect('leaders-season', seasons, seasons[0]);
-    const season = document.getElementById('leaders-season').value||seasons[0];
+    const season = document.getElementById('leaders-season').value || seasons[0];
     const cls = document.getElementById('leaders-class').value;
     const stat = document.getElementById('leaders-stat').value;
-    let data = playerStats.filter(r=>r.Name&&r[stat]!==''&&r[stat]!==undefined);
-    if (season!=='All Time') data=data.filter(r=>r.Season===season);
-    if (cls!=='all') data=data.filter(r=>CLS[r.Team]===cls);
+    let data = playerStats.filter(r => r.Name && r[stat] !== '' && r[stat] !== undefined);
+    if (season !== 'All Time') data = data.filter(r => r.Season === season);
+    if (cls !== 'all') data = data.filter(r => CLS[r.Team] === cls);
     let leaders;
-    if (season==='All Time'&&['Goals','Assists','Points','GroundBalls','Saves','Takeaways','FaceoffsWon'].includes(stat)){
-      const agg={};
-      data.forEach(r=>{const k=r.Name+'|'+r.Team;if(!agg[k])agg[k]={Name:r.Name,Team:r.Team,val:0};agg[k].val+=parseFloat(r[stat]||0);});
-      leaders=Object.values(agg).sort((a,b)=>b.val-a.val).slice(0,50);
+    if (season === 'All Time' && ['Goals', 'Assists', 'Points', 'GroundBalls', 'Saves', 'Takeaways', 'FaceoffsWon'].includes(stat)) {
+      const agg = {};
+      data.forEach(r => { const k = r.Name + '|' + r.Team; if (!agg[k]) agg[k] = { Name: r.Name, Team: r.Team, val: 0 }; agg[k].val += parseFloat(r[stat] || 0); });
+      leaders = Object.values(agg).sort((a, b) => b.val - a.val).slice(0, 50);
     } else {
-      const desc=stat!=='GAA';
-      leaders=data.map(r=>({...r,val:parseFloat(r[stat]||0)})).sort((a,b)=>desc?b.val-a.val:a.val-b.val).slice(0,50);
+      const desc = stat !== 'GAA';
+      leaders = data.map(r => ({ ...r, val: parseFloat(r[stat] || 0) })).sort((a, b) => desc ? b.val - a.val : a.val - b.val).slice(0, 50);
     }
-    el.innerHTML=`<div class="table-wrap"><table>
-      <thead><tr><th>#</th><th>Player</th><th>Team</th><th>Class</th>${season==='All Time'?'':'<th>Season</th><th>Yr</th>'}<th class="num">${stat}</th></tr></thead>
-      <tbody>${leaders.map((r,i)=>`<tr class="${r.Team==='Olympus'?'olympus-row':''}">
-        <td class="rank">${i+1}</td><td class="team-name">${r.Name}</td>
+    el.innerHTML = `<div class="table-wrap"><table>
+      <thead><tr><th>#</th><th>Player</th><th>Team</th><th>Class</th>${season === 'All Time' ? '' : '<th>Season</th><th>Yr</th>'}<th class="num">${stat}</th></tr></thead>
+      <tbody>${leaders.map((r, i) => `<tr class="${r.Team === 'Olympus' ? 'olympus-row' : ''}">
+        <td class="rank">${i + 1}</td><td class="team-name">${r.Name}</td>
         <td style="color:var(--text2)">${r.Team}</td>
-        <td><span class="badge badge-${(CLS[r.Team]||'').toLowerCase()}">${CLS[r.Team]||''}</span></td>
-        ${season==='All Time'?'':`<td style="color:var(--text3);font-family:var(--font-display)">${r.Season}</td><td style="color:var(--text3)">${r.ClassYear?r.ClassYear.substring(0,2):''}</td>`}
-        <td class="num rpi-val">${typeof r.val==='number'?r.val.toFixed(stat.includes('/')||stat==='GAA'?1:0):r[stat]}</td>
+        <td><span class="badge badge-${(CLS[r.Team] || '').toLowerCase()}">${CLS[r.Team] || ''}</span></td>
+        ${season === 'All Time' ? '' : `<td style="color:var(--text3);font-family:var(--font-display)">${r.Season}</td><td style="color:var(--text3)">${r.ClassYear ? r.ClassYear.substring(0, 2) : ''}</td>`}
+        <td class="num rpi-val">${typeof r.val === 'number' ? r.val.toFixed(stat.includes('/') || stat === 'GAA' ? 1 : 0) : r[stat]}</td>
       </tr>`).join('')}</tbody>
     </table></div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
 // ============================================================
@@ -1739,51 +959,51 @@ async function renderLeaders() {
 // ============================================================
 async function initHistory() {
   const teamSeasons = await loadData('teamSeasons');
-  const teams=[...new Set(teamSeasons.map(r=>r.Team))].filter(t=>CLS[t]).sort();
+  const teams = [...new Set(teamSeasons.map(r => r.Team))].filter(t => CLS[t]).sort();
   populateSelect('history-team', teams, 'Olympus');
   renderHistory();
 }
 
 async function renderHistory() {
   const el = document.getElementById('history-content');
-  el.innerHTML='<div class="loading">Loading</div>';
+  el.innerHTML = '<div class="loading">Loading</div>';
   try {
-    const [teamSeasons,rpi] = await Promise.all([loadData('teamSeasons'),loadData('rpi')]);
+    const [teamSeasons, games] = await Promise.all([loadData('teamSeasons'), loadData('games')]);
     const team = document.getElementById('history-team').value;
-    const seasons = teamSeasons.filter(r=>r.Team===team).sort((a,b)=>b.Season.localeCompare(a.Season));
-    const totalW=seasons.reduce((s,r)=>s+parseInt(r.Wins||0),0);
-    const totalL=seasons.reduce((s,r)=>s+parseInt(r.Losses||0),0);
-    const totalGF=seasons.reduce((s,r)=>s+parseInt(r.GoalsFor||0),0);
-    const best=seasons.slice().sort((a,b)=>parseFloat(b.WinPct||0)-parseFloat(a.WinPct||0))[0];
-    el.innerHTML=`
+    const seasons = teamSeasons.filter(r => r.Team === team).sort((a, b) => b.Season.localeCompare(a.Season));
+    const totalW = seasons.reduce((s, r) => s + parseInt(r.Wins || 0), 0);
+    const totalL = seasons.reduce((s, r) => s + parseInt(r.Losses || 0), 0);
+    const totalGF = seasons.reduce((s, r) => s + parseInt(r.GoalsFor || 0), 0);
+    const best = seasons.slice().sort((a, b) => parseFloat(b.WinPct || 0) - parseFloat(a.WinPct || 0))[0];
+    el.innerHTML = `
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-val">${totalW}-${totalL}</div><div class="stat-lbl">All-Time Record</div></div>
-        <div class="stat-card"><div class="stat-val">${((totalW/(totalW+totalL||1))*100).toFixed(0)}%</div><div class="stat-lbl">Win Rate</div></div>
+        <div class="stat-card"><div class="stat-val">${((totalW / (totalW + totalL || 1)) * 100).toFixed(0)}%</div><div class="stat-lbl">Win Rate</div></div>
         <div class="stat-card"><div class="stat-val">${seasons.length}</div><div class="stat-lbl">Seasons</div></div>
         <div class="stat-card"><div class="stat-val">${totalGF}</div><div class="stat-lbl">Goals Scored</div></div>
-        <div class="stat-card"><div class="stat-val">${best?best.Season:'—'}</div><div class="stat-lbl">Best Season</div></div>
+        <div class="stat-card"><div class="stat-val">${best ? best.Season : '—'}</div><div class="stat-lbl">Best Season</div></div>
       </div>
       <div class="table-wrap"><table>
         <thead><tr><th>Season</th><th>Class</th><th class="num">W</th><th class="num">L</th><th class="num">Win%</th><th class="num">GF</th><th class="num">GA</th><th class="num">+/-</th><th class="num">RPI</th><th class="num">Rank</th></tr></thead>
-        <tbody>${seasons.map(s=>{
-          const r=rpi.find(r=>r.Season===s.Season&&r.Team===team);
+        <tbody>${seasons.map(s => {
+          const r = getTeamRPI(games, team, s.Season);
           return `<tr>
             <td style="font-family:var(--font-display);font-weight:700">${s.Season}</td>
             <td><span class="badge badge-${s.Classification?.toLowerCase()}">${s.Classification}</span></td>
             <td class="num" style="color:var(--green-light)">${s.Wins}</td>
             <td class="num" style="color:#e88080">${s.Losses}</td>
-            <td class="num">${parseFloat(s.WinPct||0).toFixed(3)}</td>
+            <td class="num">${parseFloat(s.WinPct || 0).toFixed(3)}</td>
             <td class="num">${s.GoalsFor}</td><td class="num">${s.GoalsAgainst}</td>
-            <td class="num" style="color:${parseInt(s.GoalDiff||0)>0?'var(--green-light)':parseInt(s.GoalDiff||0)<0?'#e88080':'var(--text2)'}">${parseInt(s.GoalDiff||0)>0?'+':''}${s.GoalDiff}</td>
-            <td class="num" style="color:var(--gold-light)">${r?parseFloat(r.RPI).toFixed(4):'—'}</td>
-            <td class="num">${r?'#'+r.Rank:'—'}</td>
+            <td class="num" style="color:${parseInt(s.GoalDiff || 0) > 0 ? 'var(--green-light)' : parseInt(s.GoalDiff || 0) < 0 ? '#e88080' : 'var(--text2)'}">${parseInt(s.GoalDiff || 0) > 0 ? '+' : ''}${s.GoalDiff}</td>
+            <td class="num" style="color:var(--gold-light)">${r ? r.RPI.toFixed(4) : '—'}</td>
+            <td class="num">${r ? '#' + r.Rank : '—'}</td>
           </tr>`;
         }).join('')}</tbody>
       </table></div>`;
-  } catch(e){el.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
-loadAll().then(()=>renderOlympus());
+loadAll().then(() => renderOlympus());
 </script>
 </body>
 </html>
