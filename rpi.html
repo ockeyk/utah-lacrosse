@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utah Boys Lacrosse RPI 2025-26</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e8eaf0; min-height: 100vh; }
+  header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #1e2130; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  header h1 { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+  header p { font-size: 0.78rem; color: #4b5563; }
+  .controls { display: flex; gap: 0.6rem; padding: 0.85rem 2rem; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #1e2130; }
+  .filter-btn { background: #1a1d2e; border: 1px solid #2d3148; color: #6b7280; padding: 0.35rem 0.9rem; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.15s; }
+  .filter-btn:hover { border-color: #4f6ef7; color: #a5b4fc; }
+  .filter-btn.active { background: #1e2d6e; border-color: #4f6ef7; color: #a5b4fc; font-weight: 600; }
+  .spacer { flex: 1; }
+  #statusBar { font-size: 0.75rem; color: #4b5563; }
+  #statusBar.loading { color: #facc15; }
+  #statusBar.ok { color: #34d399; }
+  #statusBar.err { color: #f87171; }
+  .progress-wrap { padding: 0.5rem 2rem; display: none; }
+  .progress-track { background: #1a1d2e; border-radius: 4px; height: 6px; overflow: hidden; }
+  .progress-bar { height: 100%; background: #4f6ef7; border-radius: 4px; transition: width 0.3s; width: 0%; }
+  .progress-label { font-size: 0.7rem; color: #4b5563; margin-top: 0.3rem; }
+  .table-wrap { padding: 0 2rem 3rem; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  thead tr { border-bottom: 1px solid #1e2130; }
+  th { padding: 0.55rem 0.75rem; text-align: left; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #374151; }
+  th.num { text-align: right; }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #13151f; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; color: #6b7280; }
+  tr:hover td { background: #14172a; }
+  .rank { color: #374151; font-size: 0.72rem; font-weight: 600; }
+  .team-name { font-weight: 600; color: #e8eaf0; }
+  .team-name.oly { color: #f59e0b; }
+  .rpi-val { font-weight: 700; color: #a5b4fc !important; }
+  .bar { display: inline-block; height: 5px; background: #1e2d6e; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+  .cls-badge { display: inline-block; font-size: 0.62rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-left: 5px; vertical-align: middle; }
+  .cls-6A { background: #14261a; color: #4ade80; border: 1px solid #166534; }
+  .cls-5A { background: #14182e; color: #60a5fa; border: 1px solid #1e3a8a; }
+  .cls-4A { background: #22140e; color: #fb923c; border: 1px solid #7c2d12; }
+  .cls-OOS { background: #1a1a1a; color: #6b7280; border: 1px solid #374151; }
+  .section-row td { padding: 0.35rem 0.75rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #374151; background: #0d0f1a; border-top: 1px solid #1e2130; }
+  .empty { text-align: center; padding: 4rem; color: #374151; font-size: 0.85rem; }
+  .updated { font-size: 0.7rem; color: #374151; padding: 0.5rem 2rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Utah Boys Lacrosse — RPI 2025-26</h1>
+  <p id="statusBar" class="loading">Loading game data...</p>
+</header>
+
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="progress-label" id="progressLabel">Fetching teams...</div>
+</div>
+
+<div class="controls">
+  <button class="filter-btn active" onclick="setFilter('All',this)">All</button>
+  <button class="filter-btn" onclick="setFilter('6A',this)">6A</button>
+  <button class="filter-btn" onclick="setFilter('5A',this)">5A</button>
+  <button class="filter-btn" onclick="setFilter('4A',this)">4A</button>
+  <div class="spacer"></div>
+  <span id="gameCount" style="font-size:0.75rem;color:#374151;"></span>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:36px">#</th>
+        <th>Team</th>
+        <th class="num">RPI</th>
+        <th class="num">MWP</th>
+        <th class="num">OWP</th>
+        <th class="num">OOWP</th>
+        <th class="num">W-L</th>
+      </tr>
+    </thead>
+    <tbody id="rpiBody">
+      <tr><td colspan="7" class="empty">Fetching data from MaxPreps...</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="updated" id="updatedAt"></div>
+
+<script>
+const PROXY = 'https://corsproxy.io/?';
+const SEASON = '2025-26';
+
+const UTAH_TEAMS = [
+  { name: 'Alta', slug: 'sandy/alta-hawks', classification: '5A' },
+  { name: 'American Fork', slug: 'american-fork/american-fork-cavemen', classification: '6A' },
+  { name: 'Bear River', slug: 'garland/bear-river-bears', classification: '4A' },
+  { name: 'Bingham', slug: 'south-jordan/bingham-miners', classification: '6A' },
+  { name: 'Bonneville', slug: 'washington-terrace/bonneville-lakers', classification: '5A' },
+  { name: 'Bountiful', slug: 'bountiful/bountiful-redhawks', classification: '5A' },
+  { name: 'Box Elder', slug: 'brigham-city/box-elder-bees', classification: '4A' },
+  { name: 'Brighton', slug: 'cottonwood-heights/brighton-bengals', classification: '5A' },
+  { name: 'Cedar Valley', slug: 'eagle-mountain/cedar-valley-aviators', classification: '5A' },
+  { name: 'Clearfield', slug: 'clearfield/clearfield-falcons', classification: '5A' },
+  { name: 'Copper Hills', slug: 'west-jordan/copper-hills-grizzlies', classification: '6A' },
+  { name: 'Corner Canyon', slug: 'draper/corner-canyon-chargers', classification: '6A' },
+  { name: 'Crimson Cliffs', slug: 'santa-clara/crimson-cliffs-mustangs', classification: '4A' },
+  { name: 'Davis', slug: 'kaysville/davis-darts', classification: '6A' },
+  { name: 'Dixie', slug: 'st-george/dixie-flyers', classification: '4A' },
+  { name: 'East', slug: 'salt-lake-city/east-leopards', classification: '6A' },
+  { name: 'Farmington', slug: 'farmington/farmington-phoenix', classification: '6A' },
+  { name: 'Fremont', slug: 'plain-city/fremont-silverwolves', classification: '6A' },
+  { name: 'Green Canyon', slug: 'north-logan/green-canyon-wolves', classification: '4A' },
+  { name: 'Herriman', slug: 'west-herriman/herriman-mustangs', classification: '6A' },
+  { name: 'Highland', slug: 'salt-lake-city/highland-rams', classification: '6A' },
+  { name: 'Hillcrest', slug: 'midvale/hillcrest-huskies', classification: '6A' },
+  { name: 'Jordan', slug: 'sandy/jordan-beetdiggers', classification: '6A' },
+  { name: 'Juan Diego Catholic', slug: 'draper/juan-diego-catholic-soaring-eagle', classification: '4A' },
+  { name: 'Judge Memorial', slug: 'salt-lake-city/judge-memorial-bulldogs', classification: '4A' },
+  { name: 'Layton', slug: 'layton/layton-lancers', classification: '6A' },
+  { name: 'Lehi', slug: 'lehi/lehi-pioneers', classification: '6A' },
+  { name: 'Logan', slug: 'logan/logan-grizzlies', classification: '4A' },
+  { name: 'Lone Peak', slug: 'highland/lone-peak-knights', classification: '6A' },
+  { name: 'Maple Mountain', slug: 'spanish-fork/maple-mountain-golden-eagles', classification: '4A' },
+  { name: 'Mountain Crest', slug: 'hyrum/mountain-crest-mustangs', classification: '4A' },
+  { name: 'Mountain Ridge', slug: 'herriman/mountain-ridge-sentinels', classification: '6A' },
+  { name: 'Northridge', slug: 'layton/northridge-knights', classification: '5A' },
+  { name: 'Olympus', slug: 'salt-lake-city/olympus-titans', classification: '5A' },
+  { name: 'Orem', slug: 'orem/orem-tigers', classification: '4A' },
+  { name: 'Park City', slug: 'park-city/park-city-miners', classification: '5A' },
+  { name: 'Payson', slug: 'payson/payson-lions', classification: '4A' },
+  { name: 'Pleasant Grove', slug: 'pleasant-grove/pleasant-grove-vikings', classification: '6A' },
+  { name: 'Provo', slug: 'provo/provo-bulldogs', classification: '4A' },
+  { name: 'Ridgeline', slug: 'millville/ridgeline-riverhawks', classification: '4A' },
+  { name: 'Riverton', slug: 'riverton/riverton-silverwolves', classification: '6A' },
+  { name: 'Roy', slug: 'roy/roy-royals', classification: '5A' },
+  { name: 'Salem Hills', slug: 'salem/salem-hills-skyhawks', classification: '4A' },
+  { name: 'Sky View', slug: 'smithfield/sky-view-bobcats', classification: '4A' },
+  { name: 'Skyline', slug: 'salt-lake-city/skyline-eagles', classification: '5A' },
+  { name: 'Skyridge', slug: 'lehi/skyridge-falcons', classification: '6A' },
+  { name: 'Snow Canyon', slug: 'santa-clara/snow-canyon-warriors', classification: '4A' },
+  { name: 'Spanish Fork', slug: 'spanish-fork/spanish-fork-dons', classification: '4A' },
+  { name: 'Syracuse', slug: 'syracuse/syracuse-titans', classification: '6A' },
+  { name: 'Timpanogos', slug: 'orem/timpanogos-timberwolves', classification: '4A' },
+  { name: 'Timpview', slug: 'provo/timpview-thunderbirds', classification: '4A' },
+  { name: 'Viewmont', slug: 'bountiful/viewmont-vikings', classification: '5A' },
+  { name: 'Wasatch', slug: 'heber-city/wasatch-wasps', classification: '4A' },
+  { name: 'Waterford', slug: 'sandy/waterford-ravens', classification: '4A' },
+  { name: 'Weber', slug: 'pleasant-view/weber-warriors', classification: '6A' },
+  { name: 'West', slug: 'salt-lake-city/west-panthers', classification: '5A' },
+  { name: 'West Field', slug: 'west-haven/west-field-longhorns', classification: '5A' },
+  { name: 'West Jordan', slug: 'west-jordan/west-jordan-jaguars', classification: '6A' },
+  { name: 'Westlake', slug: 'saratoga-springs/westlake-thunder', classification: '6A' },
+  { name: 'Woods Cross', slug: 'woods-cross/woods-cross-wildcats', classification: '5A' },
+];
+
+const teamClassMap = {};
+UTAH_TEAMS.forEach(t => teamClassMap[t.name] = t.classification);
+
+let allRPI = [];
+let currentFilter = 'All';
+
+async function fetchTeamGames(team) {
+  const url = `https://www.maxpreps.com/ut/${team.slug}/lacrosse/schedule/`;
+  try {
+    const res = await fetch(PROXY + encodeURIComponent(url), {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    if (!res.ok) return [];
+    const html = await res.text();
+    const match = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.+?)<\/script>/s);
+    if (!match) return [];
+    const data = JSON.parse(match[1]);
+    const contests = data.props?.pageProps?.contests;
+    if (!Array.isArray(contests)) return [];
+    return contests.map(c => parseContest(c)).filter(Boolean);
+  } catch(e) {
+    return [];
+  }
+}
+
+function parseContest(contest) {
+  if (!Array.isArray(contest) || contest.length < 39) return null;
+  const t1 = contest[37], t2 = contest[38];
+  if (!Array.isArray(t1) || !Array.isArray(t2)) return null;
+  const gameId = contest[1];
+  const dateRaw = contest[11];
+  if (!dateRaw || !gameId) return null;
+  const team1Result = t1[5] || '';
+  const team1Score = (typeof t1[6] === 'number') ? t1[6] : null;
+  const team2Score = (typeof t2[6] === 'number') ? t2[6] : null;
+  const team1Name = t1[14] || '';
+  const team2Name = t2[14] || '';
+  let winner = '';
+  if (team1Result === 'W') winner = team1Name;
+  else if (team1Result === 'L') winner = team2Name;
+  if (!winner) return null;
+  return { gameId, team1: team1Name, team2: team2Name, winner };
+}
+
+async function loadAll() {
+  const status = document.getElementById('statusBar');
+  const pw = document.getElementById('progressWrap');
+  const pb = document.getElementById('progressBar');
+  const pl = document.getElementById('progressLabel');
+
+  pw.style.display = 'block';
+  status.className = 'loading';
+  status.textContent = 'Fetching game data from MaxPreps...';
+
+  const allGames = new Map();
+  const total = UTAH_TEAMS.length;
+
+  for (let i = 0; i < total; i++) {
+    const team = UTAH_TEAMS[i];
+    pl.textContent = `Fetching ${team.name}... (${i+1}/${total})`;
+    pb.style.width = Math.round(((i+1)/total)*100) + '%';
+
+    const games = await fetchTeamGames(team);
+    games.forEach(g => { if (!allGames.has(g.gameId)) allGames.set(g.gameId, g); });
+
+    await sleep(300);
+  }
+
+  pw.style.display = 'none';
+
+  const games = Array.from(allGames.values());
+  document.getElementById('gameCount').textContent = games.length + ' games';
+
+  if (!games.length) {
+    status.className = 'err';
+    status.textContent = 'Could not load data — MaxPreps may be blocking the proxy';
+    document.getElementById('rpiBody').innerHTML = '<tr><td colspan="7" class="empty">Failed to load. Try refreshing, or MaxPreps may be blocking the request.</td></tr>';
+    return;
+  }
+
+  allRPI = calculateRPI(games);
+  renderTable();
+
+  status.className = 'ok';
+  status.textContent = `${games.length} games loaded`;
+  document.getElementById('updatedAt').textContent = 'Last updated: ' + new Date().toLocaleString();
+}
+
+function calculateRPI(games) {
+  const records = {};
+  games.forEach(g => {
+    const { team1, team2, winner } = g;
+    if (!records[team1]) records[team1] = { wins:0, losses:0, opponents:[] };
+    if (!records[team2]) records[team2] = { wins:0, losses:0, opponents:[] };
+    records[team1].opponents.push(team2);
+    records[team2].opponents.push(team1);
+    if (winner === team1) { records[team1].wins++; records[team2].losses++; }
+    else if (winner === team2) { records[team2].wins++; records[team1].losses++; }
+  });
+
+  const mwp = {};
+  Object.entries(records).forEach(([t,r]) => {
+    const tot = r.wins + r.losses;
+    mwp[t] = tot > 0 ? r.wins / tot : 0;
+  });
+
+  const owp = {};
+  Object.entries(records).forEach(([team, r]) => {
+    if (!r.opponents.length) { owp[team] = 0.5; return; }
+    const vals = r.opponents.map(opp => {
+      if (!records[opp]) return 0.5;
+      const o = records[opp];
+      const h2hW = games.filter(g => ((g.team1===opp&&g.team2===team)||(g.team2===opp&&g.team1===team)) && g.winner===opp).length;
+      const h2hL = games.filter(g => ((g.team1===opp&&g.team2===team)||(g.team2===opp&&g.team1===team)) && g.winner===team).length;
+      const adjW = o.wins - h2hW, adjL = o.losses - h2hL;
+      return (adjW + adjL) > 0 ? adjW / (adjW + adjL) : 0;
+    });
+    owp[team] = vals.reduce((a,b)=>a+b,0) / vals.length;
+  });
+
+  const oowp = {};
+  Object.entries(records).forEach(([team, r]) => {
+    if (!r.opponents.length) { oowp[team] = 0.5; return; }
+    const vals = r.opponents.map(opp => owp[opp] !== undefined ? owp[opp] : 0.5);
+    oowp[team] = vals.reduce((a,b)=>a+b,0) / vals.length;
+  });
+
+  return Object.keys(records).map(team => ({
+    team,
+    classification: teamClassMap[team] || 'OOS',
+    rpi: (0.45 * mwp[team]) + (0.45 * owp[team]) + (0.10 * oowp[team]),
+    mwp: mwp[team], owp: owp[team], oowp: oowp[team],
+    wins: records[team].wins, losses: records[team].losses,
+  })).sort((a,b) => b.rpi - a.rpi);
+}
+
+function setFilter(cls, btn) {
+  currentFilter = cls;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function renderTable() {
+  const body = document.getElementById('rpiBody');
+  if (!allRPI.length) return;
+
+  if (currentFilter === 'All') {
+    let html = '';
+    ['6A','5A','4A'].forEach(cls => {
+      const teams = allRPI.filter(r => r.classification === cls);
+      if (!teams.length) return;
+      const maxR = teams[0].rpi;
+      html += `<tr class="section-row"><td colspan="7">${cls}</td></tr>`;
+      teams.forEach((r,i) => html += row(r, i+1, maxR));
+    });
+    body.innerHTML = html;
+  } else {
+    const teams = allRPI.filter(r => r.classification === currentFilter);
+    const maxR = teams[0]?.rpi || 1;
+    body.innerHTML = teams.map((r,i) => row(r, i+1, maxR)).join('');
+  }
+}
+
+function row(r, rank, maxR) {
+  const bw = Math.round((r.rpi / maxR) * 55);
+  const isOly = r.team === 'Olympus';
+  return `<tr>
+    <td class="rank">${rank}</td>
+    <td><span class="team-name${isOly?' oly':''}">${r.team}</span><span class="cls-badge cls-${r.classification}">${r.classification}</span></td>
+    <td class="num rpi-val"><span class="bar" style="width:${bw}px"></span>${r.rpi.toFixed(4)}</td>
+    <td class="num">${r.mwp.toFixed(4)}</td>
+    <td class="num">${r.owp.toFixed(4)}</td>
+    <td class="num">${r.oowp.toFixed(4)}</td>
+    <td class="num">${r.wins}-${r.losses}</td>
+  </tr>`;
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+loadAll();
+</script>
+</body>
+</html>
